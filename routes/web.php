@@ -27,8 +27,8 @@ Route::resource('purchases','PurchaseController')->names('purchases');
 Route::resource('sales','SaleController')->names('sales');
 
 
-Route::get('/principal', function () {
-    return view('principal');
+Route::get('/users', function () {
+    return view('users.index');
 
 });
 

@@ -19,7 +19,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="search-bar input-group">
                     <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
-                        <span class="d-lg-none d-md-block">{{ __('Search') }}</span>
+                        <span class="d-lg-none d-md-block">{{ __('BUSCAR') }}</span>
                     </button>
                 </li>
                 <li class="dropdown nav-item">
@@ -56,14 +56,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-navbar">
                         <li class="nav-link">
-                            <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item">{{ __('Profile') }}</a>
+                            <a href="{{ route('profile.edit') }}" class="nav-item dropdown-item">{{ __('Perfil') }}</a>
                         </li>
                         <li class="nav-link">
-                            <a href="#" class="nav-item dropdown-item">{{ __('Settings') }}</a>
+                            <a href="#" class="nav-item dropdown-item">{{ __('Configracion') }}</a>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="nav-link">
-                            <a href="{{ route('logout') }}" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+                            <a href="{{ route('logout') }}" class="nav-item dropdown-item" onclick="event.preventDefault();  document.getElementById('logout-form').submit();">{{ __('Cerrar sesion') }}</a>
                         </li>
                     </ul>
                 </li>
