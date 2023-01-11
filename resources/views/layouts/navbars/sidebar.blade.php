@@ -17,7 +17,12 @@
                     <p>{{ __('USUARIO') }}</p>
                 </a>
             </li>
-           
+            <li @if ($pageSlug=='categories' ) class="active " @endif>
+                <a href="{{ route('categories.index')  }}">
+                    <i class="tim-icons icon-single-02"></i>
+                    <p>{{ __('CATEGORIAS') }}</p>
+                </a>
+            </li>
             
             <!-- <li>
                     <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">
