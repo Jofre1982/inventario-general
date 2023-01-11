@@ -16,7 +16,7 @@ class ClientController extends Controller
 
     public function create()
     {
-        return view('admin.client.create');
+        return view('client.create');
     }
    
     public function store(StoreRequest $request)

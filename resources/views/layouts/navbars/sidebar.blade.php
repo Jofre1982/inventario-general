@@ -17,12 +17,7 @@
                     <p>{{ __('USUARIO') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug=='profile' ) class="active " @endif>
-                <a href="{{ route('profile.edit')  }}">
-                    <i class="tim-icons icon-single-02"></i>
-                    <p>{{ __('CLIENTES') }}</p>
-                </a>
-            </li>
+           
             
             <!-- <li>
                     <a data-toggle="collapse" href="#laravel-examples" aria-expanded="true">

@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::resource('categories','CateoryController')->names('categories');
+Route::resource('categories','CategoryController')->names('categories');
 Route::resource('clients','ClientController')->names('clients');
 Route::resource('products','ProductController')->names('products');
 Route::resource('providers','ProviderController')->names('providers');
@@ -33,8 +33,10 @@ Route::get('/users', function () {
 });
 
 Auth::routes();
+// Route::resource('users', App\Http\Controllers\UserController::class);
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+
 
 Route::group(['middleware' => 'auth'], function () {
 		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
