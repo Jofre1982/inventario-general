@@ -12,7 +12,7 @@ class SaleController extends Controller
     public function index()
     {
        $sales = Sale::get();
-       return view('admin.sale.index', compact('sales'));
+       return view('sale.index', compact('sales'));
     }
 
    

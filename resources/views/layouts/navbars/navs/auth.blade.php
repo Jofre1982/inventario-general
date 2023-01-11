@@ -8,7 +8,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#">{{ $page ?? __('Dashboard') }}</a>
+            <a class="navbar-brand" href="#">{{ $page ?? __('CILEOS RAZOS Y ACABADOS MJ') }}</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -18,8 +18,9 @@
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="search-bar input-group">
+                    <!-- este es el boton buscar -->
                     <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
-                        <span class="d-lg-none d-md-block">{{ __('BUSCAR') }}</span>
+                        <span class="d-lg-none d-md-block">{{ __('search') }}</span>
                     </button>
                 </li>
                 <li class="dropdown nav-item">
@@ -76,7 +77,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{ __('SEARCH') }}">
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="{{ __('BUSCAR') }}">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
                     <i class="tim-icons icon-simple-remove"></i>
               </button>

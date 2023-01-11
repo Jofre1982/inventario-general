@@ -19,12 +19,12 @@ Route::get('/', function () {
 });
 
 
-Route::resource('categories','CategoryController')->names('categories');
-Route::resource('clients','ClientController')->names('clients');
-Route::resource('products','ProductController')->names('products');
-Route::resource('providers','ProviderController')->names('providers');
-Route::resource('purchases','PurchaseController')->names('purchases');
-Route::resource('sales','SaleController')->names('sales');
+Route::resource('categories','App\Http\Controllers\CategoryController');
+Route::resource('clients','App\Http\Controllers\ClientController');
+Route::resource('products','App\Http\Controllers\ProductController');
+Route::resource('providers','App\Http\Controllers\ProviderController');
+Route::resource('purchases','App\Http\Controllers\PurchaseController');
+Route::resource('sales','App\Http\Controllers\SaleController');
 
 
 Route::get('/users', function () {
@@ -33,7 +33,7 @@ Route::get('/users', function () {
 });
 
 Auth::routes();
-// Route::resource('users', App\Http\Controllers\UserController::class);
+
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 

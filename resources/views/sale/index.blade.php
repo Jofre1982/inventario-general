@@ -1,0 +1,1 @@
+@extends('layouts.app', ['page' => __('Ventas'), 'pageSlug' => 'sales'])
