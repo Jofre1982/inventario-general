@@ -1,621 +1,118 @@
 @extends('layouts.app', ['page' => __('Clientes'), 'pageSlug' => 'clients'])
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h5 class="title">100 Awesome Nucleo Icons</h5>
-          <p class="category">Handcrafted by our friends from
-            <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
-          </p>
-        </div>
-        <div class="card-body all-icons">
-          <div class="row">
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-alert-circle-exc"></i>
-                <p>icon-alert-circle-exc</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-align-center"></i>
-                <p>icon-align-center</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-align-left-2"></i>
-                <p>icon-align-left-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-app"></i>
-                <p>icon-app</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-atom"></i>
-                <p>icon-atom</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-attach-87"></i>
-                <p>icon-attach-87</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-badge"></i>
-                <p>icon-badge</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bag-16"></i>
-                <p>icon-bag-16</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bank"></i>
-                <p>icon-bank</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-basket-simple"></i>
-                <p>icon-basket-simple</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bell-55"></i>
-                <p>icon-bell-55</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bold"></i>
-                <p>icon-bold</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-book-bookmark"></i>
-                <p>icon-book-bookmark</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-double-right"></i>
-                <p>icon-double-right</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bulb-63"></i>
-                <p>icon-bulb-63</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bullet-list-67"></i>
-                <p>icon-bullet-list-67</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-bus-front-12"></i>
-                <p>icon-bus-front-12</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-button-power"></i>
-                <p>icon-button-power</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-camera-18"></i>
-                <p>icon-camera-18</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-calendar-60"></i>
-                <p>icon-calendar-60</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-caps-small"></i>
-                <p>icon-caps-small</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-cart"></i>
-                <p>icon-cart</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-chart-bar-32"></i>
-                <p>icon-chart-bar-32</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-chart-pie-36"></i>
-                <p>icon-chart-pie-36</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-chat-33"></i>
-                <p>icon-chat-33</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-check-2"></i>
-                <p>icon-check-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-cloud-download-93"></i>
-                <p>icon-cloud-download-93</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-cloud-upload-94"></i>
-                <p>icon-cloud-upload-94</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-coins"></i>
-                <p>icon-coins</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-compass-05"></i>
-                <p>icon-compass-05</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-controller"></i>
-                <p>icon-controller</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-credit-card"></i>
-                <p>icon-credit-card</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-delivery-fast"></i>
-                <p>icon-delivery-fast</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-email-85"></i>
-                <p>icon-email-85</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-gift-2"></i>
-                <p>icon-gift-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-globe-2"></i>
-                <p>icon-globe-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-headphones"></i>
-                <p>icon-headphones</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-heart-2"></i>
-                <p>icon-heart-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-html5"></i>
-                <p>icon-html5</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-double-left"></i>
-                <p>icon-double-left</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-image-02"></i>
-                <p>icon-image-02</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-istanbul"></i>
-                <p>icon-istanbul</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-key-25"></i>
-                <p>icon-key-25</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-laptop"></i>
-                <p>icon-laptop</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-light-3"></i>
-                <p>icon-light-3</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-link-72"></i>
-                <p>icon-link-72</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-lock-circle"></i>
-                <p>icon-lock-circle</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-map-big"></i>
-                <p>icon-map-big</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-minimal-down"></i>
-                <p>icon-minimal-down</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-minimal-left"></i>
-                <p>icon-minimal-left</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-minimal-right"></i>
-                <p>icon-minimal-right</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-minimal-up"></i>
-                <p>icon-minimal-up</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-mobile"></i>
-                <p>icon-mobile</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-molecule-40"></i>
-                <p>icon-molecule-40</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-money-coins"></i>
-                <p>icon-money-coins</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-notes"></i>
-                <p>icon-notes</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-palette"></i>
-                <p>icon-palette</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-paper"></i>
-                <p>icon-paper</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-pin"></i>
-                <p>icon-pin</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-planet"></i>
-                <p>icon-planet</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-puzzle-10"></i>
-                <p>icon-puzzle-10</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-pencil"></i>
-                <p>icon-pencil</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-satisfied"></i>
-                <p>icon-satisfied</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-scissors"></i>
-                <p>icon-scissors</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-send"></i>
-                <p>icon-send</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-settings-gear-63"></i>
-                <p>icon-settings-gear-63</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-settings"></i>
-                <p>icon-settings</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-wifi"></i>
-                <p>icon-wifi</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-single-02"></i>
-                <p>icon-single-02</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-single-copy-04"></i>
-                <p>icon-single-copy-04</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-sound-wave"></i>
-                <p>icon-sound-wave</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-spaceship"></i>
-                <p>icon-spaceship</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-square-pin"></i>
-                <p>icon-square-pin</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-support-17"></i>
-                <p>icon-support-17</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-tablet-2"></i>
-                <p>icon-tablet-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-tag"></i>
-                <p>icon-tag</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-tap-02"></i>
-                <p>icon-tap-02</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-tie-bow"></i>
-                <p>icon-tie-bow</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-time-alarm"></i>
-                <p>icon-time-alarm</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-trash-simple"></i>
-                <p>icon-trash-simple</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-trophy"></i>
-                <p>icon-trophy</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-tv-2"></i>
-                <p>icon-tv-2</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-upload"></i>
-                <p>icon-upload</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-user-run"></i>
-                <p>icon-user-run</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-vector"></i>
-                <p>icon-vector</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-video-66"></i>
-                <p>icon-video-66</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-wallet-43"></i>
-                <p>icon-wallet-43</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-volume-98"></i>
-                <p>icon-volume-98</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-watch-time"></i>
-                <p>icon-watch-time</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-world"></i>
-                <p>icon-world</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-zoom-split"></i>
-                <p>icon-zoom-split</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-refresh-01"></i>
-                <p>icon-refresh-01</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-refresh-02"></i>
-                <p>icon-refresh-02</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-shape-star"></i>
-                <p>icon-shape-star</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-components"></i>
-                <p>icon-components</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-triangle-right-17"></i>
-                <p>icon-triangle-right-17</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-button-pause"></i>
-                <p>icon-button-pause</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-simple-remove"></i>
-                <p>icon-simple-remove</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-simple-add"></i>
-                <p>icon-simple-add</p>
-              </div>
-            </div>
-            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-              <div class="font-icon-detail">
-                <i class="tim-icons icon-simple-delete"></i>
-                <p>icon-simple-delete</p>
-              </div>
-            </div>
-          </div>
-        </div>
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Clientes</h1>
+      </div>
+      <div class="col-sm-6">
+        <a class="btn btn-primary float-right" href="{{ route('clients.create') }}">
+          Nuevo
+        </a>
       </div>
     </div>
   </div>
-@endsection 
+</section>
+<div class="content px-3">
 
+        
+        <div class="clearfix"></div>
+
+        <div class="card">
+            <div class="card-body p-0">
+                <div id="dataTableBuilder_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer"><div class="dt-buttons btn-group flex-wrap">          <button class="btn btn-secondary buttons-create btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-plus"></i> Create</span></button> <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-export btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button" aria-haspopup="true" aria-expanded="false"><span><i class="fa fa-download"></i> Export&nbsp;<span class="caret"></span></span></button></div> <button class="btn btn-secondary buttons-print btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-print"></i> Print</span></button> <button class="btn btn-secondary buttons-reset btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-undo"></i> Reset</span></button> <button class="btn btn-secondary buttons-reload btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-refresh"></i> Reload</span></button> </div><div id="dataTableBuilder_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTableBuilder"></label></div><div id="dataTableBuilder_processing" class="dataTables_processing card" style="display: none;">Processing...</div><table class="table table-striped table-bordered dataTable no-footer" id="dataTableBuilder" width="100%" role="grid" aria-describedby="dataTableBuilder_info" style="width: 100%;"><thead><tr role="row"><th title="Nombre" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Nombre: activate to sort column ascending" style="width: 316px;">Nombre</th><th title="Cantidad" class="sorting" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-label="Cantidad: activate to sort column ascending" style="width: 83px;">Cantidad</th><th title="Acciones" width="120px" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Acciones" style="width: 123px;">Acciones</th></tr></thead><tbody><tr role="row" class="odd"><td class="sorting_1">JABON LIQUIDO</td><td>0</td><td><form method="POST" action="http://127.0.0.6/products/6" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="6UEAT4b1cI8ijKV3xRoTG6yScozcxqQmsipZ3WT8">
+<div class="btn-group">
+    <a href="http://127.0.0.6/products/6/logs" class="btn btn-default btn-xs">
+        <i class="fa fa-file-invoice"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-inbound" onclick="addModalId(6)">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-outbound" onclick="addModalId(6)">
+        <i class="fas fa-arrow-down"></i>
+    </a>
+    <a href="http://127.0.0.6/products/6" class="btn btn-default btn-xs">
+        <i class="fa fa-eye"></i>
+    </a>
+    <a href="http://127.0.0.6/products/6/edit" class="btn btn-default btn-xs">
+        <i class="fa fa-edit"></i>
+    </a>
+    <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+</div>
+</form>
+</td></tr><tr role="row" class="even"><td class="sorting_1">JABON EN POLVO</td><td>90</td><td><form method="POST" action="http://127.0.0.6/products/4" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="6UEAT4b1cI8ijKV3xRoTG6yScozcxqQmsipZ3WT8">
+<div class="btn-group">
+    <a href="http://127.0.0.6/products/4/logs" class="btn btn-default btn-xs">
+        <i class="fa fa-file-invoice"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-inbound" onclick="addModalId(4)">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-outbound" onclick="addModalId(4)">
+        <i class="fas fa-arrow-down"></i>
+    </a>
+    <a href="http://127.0.0.6/products/4" class="btn btn-default btn-xs">
+        <i class="fa fa-eye"></i>
+    </a>
+    <a href="http://127.0.0.6/products/4/edit" class="btn btn-default btn-xs">
+        <i class="fa fa-edit"></i>
+    </a>
+    <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+</div>
+</form>
+</td></tr><tr role="row" class="odd"><td class="sorting_1">ESCOBA</td><td>40</td><td><form method="POST" action="http://127.0.0.6/products/5" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="6UEAT4b1cI8ijKV3xRoTG6yScozcxqQmsipZ3WT8">
+<div class="btn-group">
+    <a href="http://127.0.0.6/products/5/logs" class="btn btn-default btn-xs">
+        <i class="fa fa-file-invoice"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-inbound" onclick="addModalId(5)">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-outbound" onclick="addModalId(5)">
+        <i class="fas fa-arrow-down"></i>
+    </a>
+    <a href="http://127.0.0.6/products/5" class="btn btn-default btn-xs">
+        <i class="fa fa-eye"></i>
+    </a>
+    <a href="http://127.0.0.6/products/5/edit" class="btn btn-default btn-xs">
+        <i class="fa fa-edit"></i>
+    </a>
+    <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+</div>
+</form>
+</td></tr><tr role="row" class="even"><td class="sorting_1">Aerosol Matavoladores Rai Frasco *285cc</td><td>99</td><td><form method="POST" action="http://127.0.0.6/products/1" accept-charset="UTF-8"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="6UEAT4b1cI8ijKV3xRoTG6yScozcxqQmsipZ3WT8">
+<div class="btn-group">
+    <a href="http://127.0.0.6/products/1/logs" class="btn btn-default btn-xs">
+        <i class="fa fa-file-invoice"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-inbound" onclick="addModalId(1)">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <a class="btn btn-default btn-xs" data-toggle="modal" data-target="#modal-outbound" onclick="addModalId(1)">
+        <i class="fas fa-arrow-down"></i>
+    </a>
+    <a href="http://127.0.0.6/products/1" class="btn btn-default btn-xs">
+        <i class="fa fa-eye"></i>
+    </a>
+    <a href="http://127.0.0.6/products/1/edit" class="btn btn-default btn-xs">
+        <i class="fa fa-edit"></i>
+    </a>
+    <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
+</div>
+</form>
+</td></tr></tbody></table><div class="dataTables_info" id="dataTableBuilder_info" role="status" aria-live="polite">Showing 1 to 4 of 4 entries</div><div class="dataTables_paginate paging_simple_numbers" id="dataTableBuilder_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTableBuilder_previous"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="dataTableBuilder_next"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li></ul></div></div>
+
+
+                <div class="card-footer clearfix">
+                    <div class="float-right">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+@endsection

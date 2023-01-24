@@ -22,7 +22,7 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $providers = Provider::get();
-        return view('admin.product.create',compact('categories','providers'));
+        return view('product.create',compact('categories','providers'));
     }
 
     
