@@ -1,19 +1,33 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <!-- <a href="#" class="simple-text logo-mini">{{ __('MENU') }}</a> -->
             <a href="#" class="simple-text logo-normal">{{ __('MENU ') }}</a>
         </div>
 
         <ul class="nav">
-            <div class="collapse show" id="inicio">
-                <li @if ($pageSlug=='dashboard' ) class="active " @endif>
-                    <a href="{{ route('home') }}">
-                        <i class="tim-icons icon-chart-pie-36"></i>
-                        <p>{{ __('Inicio') }}</p>
-                    </a>
-                </li>
-            </div>
+            <li>
+                <a data-toggle="collapse" href="#principal" aria-expanded="true">
+                    <i class="tim-icons icon-atom"></i>
+                    <span class="nav-link-text">{{ __('PRINCIPAL') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse show" id="principal">
+                    <ul class="nav pl-4">
+                        <li @if ($pageSlug=='dashboard' ) class="active " @endif>
+                            <a href="{{ route('home') }}">
+                                <i class="tim-icons icon-laptop"></i>
+                                <p>{{ __('INICIO') }}</p>
+                            </a>
+                        </li>
+                        <li @if ($pageSlug=='profile' ) class="active " @endif>
+                            <a href="{{ route('profile.edit')  }}">
+                                <i class="tim-icons icon-satisfied"></i>
+                                <p>{{ __('USUARIO') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
             <li>
                 <a data-toggle="collapse" href="#personas" aria-expanded="true">
@@ -23,16 +37,16 @@
                 </a>
                 <div class="collapse show" id="personas">
                     <ul class="nav pl-4">
-                        <li @if ($pageSlug=='profile' ) class="active " @endif>
-                            <a href="{{ route('profile.edit')  }}">
-                                <i class="tim-icons icon-single-02"></i>
-                                <p>{{ __('USUARIO') }}</p>
-                            </a>
-                        </li>
                         <li @if ($pageSlug=='clients' ) class="active " @endif>
                             <a href="{{ route('clients.index')  }}">
                                 <i class="tim-icons icon-user-run"></i>
                                 <p>{{ __('CLIENTES') }}</p>
+                            </a>
+                        </li>
+                        <li @if ($pageSlug=='providers' ) class="active " @endif>
+                            <a href="{{ route('providers.index')  }}">
+                                <i class="tim-icons icon-bus-front-12"></i>
+                                <p>{{ __('PROVEEDORES') }}</p>
                             </a>
                         </li>
                     </ul>
@@ -41,7 +55,7 @@
 
             <li>
                 <a data-toggle="collapse" href="#elementos" aria-expanded="true">
-                    <i class="tim-icons icon-single-copy-04"></i>
+                    <i class="tim-icons icon-bullet-list-67"></i>
                     <span class="nav-link-text">{{ __('ELEMENTOS') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
@@ -63,10 +77,10 @@
                     </ul>
                 </div>
             </li>
-            
+
             <li>
                 <a data-toggle="collapse" href="#transacciones" aria-expanded="true">
-                    <i class="tim-icons icon-cart"></i>
+                    <i class="tim-icons icon-tap-02"></i>
                     <span class="nav-link-text">{{ __('TRANSACCIONES') }}</span>
                     <b class="caret mt-1"></b>
                 </a>

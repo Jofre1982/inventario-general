@@ -38,7 +38,7 @@ class CategoryController extends Controller
 
    function edit(Category $category)
     {
-        return view('category.show', compact('category'));    
+        return view('category.edit', compact('category'));    
     }
 
    

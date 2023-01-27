@@ -35,14 +35,14 @@ class ProductController extends Controller
    
     public function show(Product $product)
     {
-        return view('admin.product.show', compact('product'));
+        return view('product.show', compact('product'));
     }
 
    function edit(Product $product)
     {
         $categories = Category::get();
         $providers = Provider::get();
-        return view('admin.product.show', compact('product','categories','providers'));    
+        return view('product.show', compact('product','categories','providers'));    
     }
 
    

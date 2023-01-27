@@ -1,52 +1,47 @@
-@extends('layouts.app', ['page' => __('Productos'), 'pageSlug' => 'products'])
+@extends('layouts.app', ['page' => __('Productos'), 'pageSlug' => 'Registerproducts'])
 
 @section('content')
-<div class="content-wrapper" style="min-height: 543px;">
-    <section class="content">
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-12">
-                        <h1>Crear Producto</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="content px-3">
-
-
-            <div class="card">
-
-                <form method="POST" action="http://127.0.0.10/products" accept-charset="UTF-8"><input name="_token" type="hidden" value="wbY4I5tAEPtt2DrJ8cf0rkgKEcONXwlXs2pjmWx1">
-
-                    <div class="card-body">
-
-                        <div class="row">
-                            <!-- Name Field -->
-                            <div class="form-group col-sm-6">
-                                <label for="name">Nombre:</label>
-                                <input class="form-control" maxlength="191" name="name" type="text" id="name">
-                            </div>
-
-                            <!-- Amount Field -->
-                            <div class="form-group col-sm-6">
-                                <label for="amount">Cantidad:</label>
-                                <input class="form-control" name="amount" type="number" id="amount">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="card-footer">
-                        <input class="btn btn-primary" type="submit" value="Guardar">
-                        <a href="http://127.0.0.6/products" class="btn btn-default">Cancelar</a>
-                    </div>
-
-                </form>
-
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Crear Productos</h1>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+{!! Form::open(['route'=>'products.store','method'=>'POST']) !!}
+<div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="" required>
 </div>
+<div class="form-group">
+    <label for="sell_price">Precio de Venta</label>
+    <input type="number" class="form-control" name="sell_price" id="sell_price" aria-describedby="helpId" placeholder="" required>
+</div>
+<div class="form-group">
+  <label for="category_id">Categoria</label>
+  <select class="form-control" name="category_id" id="">
+    @foreach($categories as $category)
+    <option value="{{$category->id}}">{{$category->name}}</option>
+    @endforeach  
+  </select>
+</div>
+<div class="form-group">
+  <label for="provider_id">Proveedor</label>
+  <select class="form-control" name="provider_id" id="">
+    @foreach($providers as $provider)
+    <option value="{{$provider->id}}">{{$provider->name}}</option>
+    @endforeach  
+  </select>
+</div>
+<div class="custom-file mb-4">
+    <input type="file" class="custom-file-input" id="image" name="image" lang="es">
+    <label class="custom-file-label" for="image">Seleccione archivo</label>
+</div>
+<button type="submit" class="btn btn-primary mr-2">Registrar</button>
+<a href="{{ route('products.index') }}" class="btn btn -ligth">Cancelar</a>
+{!! Form::close() !!}
+
 @endsection
