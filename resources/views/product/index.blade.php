@@ -31,7 +31,7 @@
                         <th title="Nombre" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Nombre: activate to sort column ascending" style="width: 316px;">NOMBRE</th>
                         <th title="Stock" class="sorting" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-label="Cantidad: activate to sort column ascending" style="width: 83px;">STOCK</th>
                         <th title="Estado" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">ESTADO</th>
-                        <th title="Categotia" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">CATEGORIA</th>
+                        <th title="Categoria" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">CATEGORIA</th>
                         <th title="Acciones" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">ACCIONES</th>
                     </tr>
                 </thead>
@@ -40,14 +40,14 @@
                     <tr>
                         <th scope="row">{{$product->id}}</th>
                         <td>
-                            <a href="{{route('providers.show',$provider)}}">{{$product->name}}</a>
+                            <a href="{{route('products.show',$product   )}}">{{$product->name}}</a>
                         </td>
                         <td>{{$product->stock}}</td>
-                        <td>{{$provider->status}}</td>
-                        <td>{{$provider->category_id}}</td>
+                        <td>{{$product->status}}</td>
+                        <td>{{$product->category->name}}</td>
                         <td style="width:50px;">
 
-                            {!!Form::open(['route'=>['prodcuts.destroy', $product],'method'=>'DELETE']) !!}
+                            {!!Form::open(['route'=>['products.destroy', $product],'method'=>'DELETE']) !!}
                             <a href="{{route('products.edit',$product)}}" class="btn btn-default btn-xs">
                                 <i class="fa fa-edit"></i>
                             </a>

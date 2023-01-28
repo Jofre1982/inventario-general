@@ -11,7 +11,7 @@
     </div>
 </section>
 
-{!! Form::open(['route'=>'products.store','method'=>'POST']) !!}
+{!! Form::open(['route'=>'products.store','method'=>'POST','files'=>true]) !!}
 <div class="form-group">
     <label for="name">Nombre</label>
     <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="" required>
@@ -22,7 +22,7 @@
 </div>
 <div class="form-group">
   <label for="category_id">Categoria</label>
-  <select class="form-control" name="category_id" id="">
+  <select class="form-control" name="category_id" id="category_id">
     @foreach($categories as $category)
     <option value="{{$category->id}}">{{$category->name}}</option>
     @endforeach  
@@ -30,7 +30,7 @@
 </div>
 <div class="form-group">
   <label for="provider_id">Proveedor</label>
-  <select class="form-control" name="provider_id" id="">
+  <select class="form-control" name="provider_id" id="provider_id">
     @foreach($providers as $provider)
     <option value="{{$provider->id}}">{{$provider->name}}</option>
     @endforeach  
