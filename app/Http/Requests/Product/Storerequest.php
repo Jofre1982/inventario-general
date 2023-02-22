@@ -34,13 +34,13 @@ public function messages()
 
         'sell_price.reqired'=>'El campo es requerido',
 
-        'category_id.integer'=>'El valor tiene que ser entero',
-        'category_id.required'=>'El campo es requerido',
-        // 'category_id.exists'=>'La categoria no existe',
+        // 'category_id.integer'=>'El valor tiene que ser entero',
+        // 'category_id.required'=>'El campo es requerido',
+        // // 'category_id.exists'=>'La categoria no existe',
 
-        'provider_id.integer'=>'El valor tiene que ser entero',
-        'provider_id.required'=>'El campo es requerido',
-        // 'provider_id.exists'=>'El provedor no existe',
+        // 'provider_id.integer'=>'El valor tiene que ser entero',
+        // 'provider_id.required'=>'El campo es requerido',
+        // // 'provider_id.exists'=>'El provedor no existe',
         
         
     ];

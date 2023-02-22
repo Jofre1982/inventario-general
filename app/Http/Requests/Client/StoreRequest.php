@@ -16,7 +16,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name'=>'string|required|max:255',
-            'document'=>'string|required|uinque:clients|max:20',
+            'document'=>'string|required|unique:clients|max:20',
             'adress'=>'string|max:255',
             'phone'=>'string|required|max:10',
             'email'=>'string|max:255',

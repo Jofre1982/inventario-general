@@ -15,7 +15,7 @@ public function rules()
 {
     return [
         'name'=>'string|required|unique:products,name,'.$this->route('product')->id.'|max:255',
-        'image'=>'dimensions:min_width=100,min_height=200',
+        // 'image'=>'dimensions:min_width=100,min_height=200',
         'sell_price'=>'required',
         'category_id'=>'integer|required|exists:App\Category,id',
         'provider_id'=>'integer|required|exists:App\Provider,id',
@@ -29,8 +29,8 @@ public function messages()
         'name.unique'=>'El producto ya esta registrado',
         'name.max'=>'Solo se permiten 255 caracteres',
         
-        'image.required'=>'El campo es requerido',
-        'image.dimensions'=>'Solo se permiten imagenes de 100 x 200 px',
+        // 'image.required'=>'El campo es requerido',
+        // 'image.dimensions'=>'Solo se permiten imagenes de 100 x 200 px',
 
         'sell_price.reqired'=>'El campo es requerido',
 
