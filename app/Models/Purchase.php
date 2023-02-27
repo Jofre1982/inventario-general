@@ -10,7 +10,7 @@ class Purchase extends Model
     protected $fillable = [
         'provider_id',
         'user_id',
-        'purchese_date',
+        'purchase_date',
         'tax',
         'total',
         'status',
@@ -22,12 +22,12 @@ class Purchase extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function Client(){
-        return $this->belongsTo(Client::class);
+    public function provider(){
+        return $this->belongsTo(Provider::class);
     }
     
-    public function saleDetails(){
-        return $this->hasMany(saleDetails::class);
+    public function purchaseDetails(){
+        return $this->hasMany(PurchaseDetails::class);
     }
     
 }

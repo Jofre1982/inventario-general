@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Provider;
+use App\Models\Provider;
 use App\Models\Purchase;
+use App\Models\Product; 
 use App\Http\Requests\Purchase\StoreRequest;
 use App\Http\Requests\Purchase\UpdateRequest;
 
@@ -15,12 +16,12 @@ class PurchaseController extends Controller
        return view('purchase.index', compact('purchases'));
     }
 
-   
-    public function create()
-    {
-        $providers = Provider::get();
-        return view('purchase.index', compact('providers'));
-    }
+     public function create()
+     {
+         $providers = Provider::get();
+         $products = Product::get();
+         return view('purchase.create', compact('providers', 'products'));
+     }
 
     
     public function store(StoreRequest $request)
@@ -39,27 +40,27 @@ class PurchaseController extends Controller
    
     public function show(Purchase $purchase)
     {
-        return view('admin.purchase.show', compact('purchase'));
+        return view('purchase.show', compact('purchase'));
     }
 
    function edit(Purchase $purchase)
     {
         $providers = Provider::get();
-        return view('admin.purchase.show', compact('purchase'));    
+         return view('purchase.show', compact('purchase'));    
     }
 
    
     public function update(UpdateRequest $request, Purchase $purchase)
     {
-       // $purchase->update($request->all());
-       // return redirect()->route('purchases.index');
+        $purchase->update($request->all());
+        return redirect()->route('purchases.index');
     }
 
  
     public function destroy(Purchase $purchase)
     {
-       // $purchase->delete();
-       // return redirect()->route('purchases.index');
+       $purchase->delete();
+       return redirect()->route('purchases.index');
 
     }
 }

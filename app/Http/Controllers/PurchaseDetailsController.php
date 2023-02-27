@@ -68,7 +68,7 @@ class PurchaseDetailsController extends Controller
      * @param  \App\Models\PurchaseDetails  $purchaseDetails
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePurchaseDetailsRequest $request, PurchaseDetails $purchaseDetails)
+    public function update( UpdatePurchaseDetailsRequest $request, PurchaseDetails $purchaseDetails)
     {
         //
     }

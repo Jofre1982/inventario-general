@@ -19,7 +19,7 @@ class SaleController extends Controller
     public function create()
     {
         $clinets = Client::get();
-        return view('admin.sale.index', compact('clients'));
+        return view('sale.index', compact('clients'));
     }
 
     
@@ -40,27 +40,27 @@ class SaleController extends Controller
    
     public function show(Sale $sale)
     {
-        return view('admin.sale.show', compact('sale'));
+        return view('sale.show', compact('sale'));
     }
 
    function edit(Sale $sale)
     {
         $clinets = Client::get();
-        return view('admin.sale.show', compact('sale'));    
+        return view('sale.show', compact('sale'));    
     }
 
    
     public function update(UpdateRequest $request, Sale $sale)
     {
-       // $sale->update($request->all());
-       // return redirect()->route('sales.index');
+       $sale->update($request->all());
+       return redirect()->route('sales.index');
     }
 
  
     public function destroy(Sale $sale)
     {
-       // $sale->delete();
-       // return redirect()->route('sales.index');
+        $sale->delete();
+        return redirect()->route('sales.index');
 
     }
 }
