@@ -36,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($purchases |as $purchase)
+                    @foreach($purchases as $purchase)
                     <tr>
                         <th scope="row">{{$purchase->id}}</th>
                         <td>{{$purchase->purchase_date}}</td>
