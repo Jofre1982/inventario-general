@@ -1,17 +1,19 @@
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-normal">{{ __('MENU ') }}</a>
+            <a href="#" class="simple-text logo-normal">
+            <i class="tim-icons icon-align-left-2"></i>
+                {{ __('MENU ') }}</a>
         </div>
 
         <ul class="nav">
             <li>
                 <a data-toggle="collapse" href="#principal" aria-expanded="true">
-                    <i class="tim-icons icon-atom"></i>
+                    <i class="tim-icons icon-tap-02"></i>
                     <span class="nav-link-text">{{ __('PRINCIPAL') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse show" id="principal">
+                <div class="collapse" id="principal">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug=='dashboard' ) class="active " @endif>
                             <a href="{{ route('home') }}">
@@ -35,7 +37,7 @@
                     <span class="nav-link-text">{{ __('PERSONAS') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse show" id="personas">
+                <div class="collapse" id="personas">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug=='clients' ) class="active " @endif>
                             <a href="{{ route('clients.index')  }}">
@@ -54,12 +56,12 @@
             </li>
 
             <li>
-                <a data-toggle="collapse" href="#elementos" aria-expanded="true">
+                <a data-toggle="collapse" href="#elementos"aria-expanded="true">
                     <i class="tim-icons icon-bullet-list-67"></i>
                     <span class="nav-link-text">{{ __('ELEMENTOS') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse show" id="elementos">
+                <div class="collapse" id="elementos">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug=='categories' ) class="active " @endif>
                             <a href="{{ route('categories.index')  }}">
@@ -80,11 +82,11 @@
 
             <li>
                 <a data-toggle="collapse" href="#transacciones" aria-expanded="true">
-                    <i class="tim-icons icon-tap-02"></i>
+                    <i class="tim-icons icon-coins"></i>
                     <span class="nav-link-text">{{ __('TRANSACCIONES') }}</span>
                     <b class="caret mt-1"></b>
                 </a>
-                <div class="collapse show" id="transacciones">
+                <div class="collapse" id="transacciones">
                     <ul class="nav pl-4">
                         <li @if ($pageSlug=='purchases' ) class="active " @endif>
                             <a href="{{ route('purchases.index')  }}">

@@ -11,8 +11,8 @@
     <input type="number" class="form-control" name="tax" id="tax" aria-describedby="helpId" placeholder="%18">
 </div>
 <div class="form-group">
-    <label for="producto_id">Producto</label>
-    <select class="form-control" name="producto_id" id="producto_id">
+    <label for="product_id">Producto</label>
+    <select class="form-control" name="product_id" id="product_id">
         @foreach($products as $product)
         <option value="{{$product->id}}">{{$product->name}}</option>
         @endforeach
@@ -27,7 +27,7 @@
     <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" placeholder="">
 </div>
 <div class="form-group">
-    <button type="button" class="btn btn-primary floath-righ">Agregar Producto</button>
+    <button type="button" id="agregar" class="btn btn-primary floath-righ">Agregar Producto</button>
 </div>
 <div class="form-group">
 <h4 class="card-title">Detalle de la Compra</h4>    
