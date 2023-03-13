@@ -16,11 +16,11 @@
 @include('purchase._form')
 
 {!! Form::close() !!}
-<button type="submit" class="btn btn-primary mr-2">Registrar</button>
+<button type="submit" id="guardar" class="btn btn-primary float-right">Registrar</button>
 <a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
 @endsection
 
-@section('scripts')
+@section('script')
 <script>
     $(document).ready(function() {
         $("#agregar").click(function() {
@@ -67,7 +67,7 @@
         total_impuesto = total * impuesto / 100;
         total_pagar = total + total_impuesto;
         total = total-subtotal[index];
-        $("#totl_impuesto").html("PEN" + total_impuesto.tofixed(2));
+        $("#total_impuesto").html("PEN" + total_impuesto.tofixed(2));
         $("#total_pagar_html").html("PEN" + total_pagar.tofixed(2));
         $("#total_pagar").vla(total_pagar.tofixed(2));
        
@@ -86,7 +86,7 @@
         total_impuesto = total*impuesto / 100;
         total_pagar_html = total + total_impuesto;
         $("#total").html("PEN" + total);
-        $("#totl_impuesto").html("PEN" + total_impuesto);
+        $("#total_impuesto").html("PEN" + total_impuesto);
         $("#total_pagar_html").html("PEN" + total_pagar_html);
         $("#total_pagar").vla(total_pagar_html.tofixed(2));
         $("#fila" + index).remove();

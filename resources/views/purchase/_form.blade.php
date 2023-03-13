@@ -27,55 +27,51 @@
     <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" placeholder="">
 </div>
 <div class="form-group">
-    <button type="button" id="agregar" class="btn btn-primary floath-righ">Agregar Producto</button>
+    <button type="button" id="agregar" class="btn btn-primary float-right">Agregar Producto</button>
 </div>
 <div class="form-group">
-<h4 class="card-title">Detalle de la Compra</h4>    
-<div class="table-responsive col-md-12">
-    <table id="detalles" class="table table-striped">
-        <thead>
-            <tr>Eliminar</tr>
-            <tr>Producto</tr>
-            <tr>Precio</tr>
-            <tr>Cantidad</tr>
-            <tr>Subtotal</tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th colspan="4">
-                    <p aling="right">TOTAL</p>
-                </th>
-                <th>
-                <p aling="right">
-                    <span id="total">PEN 0.00:</span>
-                </p>
-                </th>
-            </tr>
-            <tr id="dvOcultar">
-                <th colspan="4">
-                <p aling="right">TOTAL IMPUESTO (18%):</p>
-                </th>
-                <p aling="right">
-                    <span id="total_impuesto">PEN 0.00</span>
-                </p>
-                </th>
-            </tr>
-            <tr>
-                <th colspan="4">
-                <p aling="right">TOTAL PAGAR:</p>
-                </th>
-                <p aling="right">
-                    <span aling="right" id="total_pagar_html">PEN 0.00</span>
-                    <input type="hidden" name="total" id="total_pagar">
-                </p>
-                </th>
-            </tr>
-        </tfoot>
-        <tbody>
-            
-        </tbody>
-    </table>
-</div>
+    <h4 class="card-title">Detalle de la Compra</h4>
+    <div class="table-responsive col-md-12">
+        <table id="detalles" class="table table-striped">
+            <thead>
+                <tr>Eliminar</tr>
+                <tr>Producto</tr>
+                <tr>Precio</tr>
+                <tr>Cantidad</tr>
+                <tr>Subtotal</tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan="4">
+                        <p aling="right" >TOTAL</p>
+                    </th>
+                    <th>
+                        <p aling="right">
+                            <span id="total">PEN 0.00:</span>
+                        </p>
+                    </th>
+                </tr>
+                <tr id="dvOcultar">
+                    <th colspan="4">
+                        <p aling="right">TOTAL IMPUESTO (18%):</p>
+                    </th>
+                    <p aling="right">
+                        <span id="total_impuesto">PEN 0.00</span>
+                    </p>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="4">
+                        <p aling="right">TOTAL PAGAR:</p>
+                    </th>
+                    <p aling="right">
+                        <span aling="right" id="total_pagar_html">PEN 0.00</span>
+                        <input type="hidden" name="total" id="total_pagar">
+                    </p>
+                    </th>
+                </tr>
+        </table>
+    </div>
 
 
 

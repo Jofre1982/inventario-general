@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
-use App\Http\Requests;
+
 use App\Http\Requests\Provider\StoreRequest;
 use App\Http\Requests\Provider\UpdateRequest;
 
