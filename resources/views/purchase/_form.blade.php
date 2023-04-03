@@ -47,7 +47,7 @@
                     </th>
                     <th>
                         <p style="text-align:right">
-                            <span id="total">PEN 0.00:</span>
+                            <span id="total">PEN  0.00:</span>
                         </p>
                     </th>
                 </tr>
@@ -57,7 +57,7 @@
                     </th>
                     <th>
                         <p style="text-align:right">
-                            <span id="total_impuesto">PEN 0.00</span>
+                            <span id="total_impuesto">PEN  0.00</span>
                         </p>
                     </th>
                 </tr>
@@ -67,14 +67,12 @@
                     </th>
                     <th>
                         <p style="text-align:right">
-                            <span aling="right" id="total_pagar_html">PEN 0.00</span>
+                            <span aling="right" id="total_pagar_html">PEN  0.00</span>
                             <input type="hidden" name="total" id="total_pagar">
                         </p>
                     </th>
                 </tr>
             </tfoot>
-            <tbody>
-            </tbody>
         </table>
     </div>
 </div>

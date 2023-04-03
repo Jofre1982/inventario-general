@@ -1,7 +1,5 @@
 @extends('layouts.app', ['page' => __('Compras'), 'pageSlug' => 'Registerpurchases'])
 
-
-
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -14,6 +12,7 @@
     </div>
 </section>
 
+
 {!! Form::open(['route'=>'purchases.store','method'=>'POST']) !!}
 
 @include('purchase._form')
@@ -21,7 +20,7 @@
 {!! Form::close() !!}
 
 <a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
-<button type="submit" id="guardar" class="btn btn-primary">Registrar</button>
+<button type="submit" id="guardar" class="btn btn-primary mr-2">Registrar</button>
 
 @endsection
 
@@ -57,7 +56,7 @@
         } else {
             Swal.fire({
                 type: 'error',
-                text: 'Rellene todos #1 los campos del detalle de las compras',
+                text: 'Rellene todos los campos del detalle de las compras',
             })
         }
     }
