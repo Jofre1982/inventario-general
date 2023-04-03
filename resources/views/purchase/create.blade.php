@@ -16,13 +16,14 @@
 @include('purchase._form')
 
 {!! Form::close() !!}
+
 <button type="submit" id="guardar" class="btn btn-primary float-right">Registrar</button>
 <a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
 @endsection
 
-@section('script')
+@push('js')
 <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
         $("#agregar").click(function() {
             agregar();
         });
@@ -70,12 +71,12 @@
         $("#total_impuesto").html("PEN" + total_impuesto.tofixed(2));
         $("#total_pagar_html").html("PEN" + total_pagar.tofixed(2));
         $("#total_pagar").vla(total_pagar.tofixed(2));
-       
+
     }
 
     function evaluar(){
         if(total<0){
-            $("#guardar").show();     
+            $("#guardar").show();
         } else{
             $("#guardar").hide();
         }
@@ -92,6 +93,7 @@
         $("#fila" + index).remove();
         evaluar();
     }
-
 </script>
-@endsection
+@endpush
+
+

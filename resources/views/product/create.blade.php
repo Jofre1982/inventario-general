@@ -22,7 +22,7 @@
 </div>
 <div class="form-group">
   <label for="category_id">Categoria</label>
-  <select class="form-control" name="category_id" id="category_id">
+  <select style="background-color: #1e1e2f" class="form-control" name="category_id" id="category_id">
     @foreach($categories as $category)
     <option value="{{$category->id}}">{{$category->name}}</option>
     @endforeach
@@ -30,7 +30,7 @@
 </div>
 <div class="form-group">
   <label for="provider_id">Proveedor</label>
-  <select class="form-control" name="provider_id" id="provider_id">
+  <select style="background-color: #1e1e2f" class="form-control" name="provider_id" id="provider_id">
     @foreach($providers as $provider)
     <option value="{{$provider->id}}">{{$provider->name}}</option>
     @endforeach
