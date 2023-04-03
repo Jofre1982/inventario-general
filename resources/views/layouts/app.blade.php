@@ -67,9 +67,9 @@
                     <div class="clearfix"></div>
                     </a>
                 </li>
-              
+
                 <li class="header-title">GRACIAS POR ELEGIRME</li>
-               
+
                 </ul>
             </div>
         </div>
@@ -87,7 +87,7 @@
 
         <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
         <script src="{{ asset('black') }}/js/theme.js"></script>
-        
+
         <script>
             $(document).ready(function() {
                 $().ready(function() {

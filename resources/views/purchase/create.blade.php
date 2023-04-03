@@ -1,5 +1,7 @@
 @extends('layouts.app', ['page' => __('Compras'), 'pageSlug' => 'Registerpurchases'])
 
+
+
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -8,6 +10,7 @@
                 <h1>Crear Compra</h1>
             </div>
         </div>
+
     </div>
 </section>
 
@@ -16,18 +19,28 @@
 @include('purchase._form')
 
 {!! Form::close() !!}
-
-<button type="submit" id="guardar" class="btn btn-primary float-right">Registrar</button>
+<button type="submit" id="guardar" class="btn btn-primary">Registrar</button><!--Por qué e puso un float?-->
 <a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
+
+
 @endsection
 
 @push('js')
 <script>
-   $(document).ready(function() {
+    console.log('ojo')
+    $(document).ready(function() {
+        console.log("goteo")
         $("#agregar").click(function() {
+            alert('Botón agregar presionado');
             agregar();
         });
     });
+//    $(document).ready(function() {
+//         $("#agregar").click(function() {
+//             alert('Aca funciona');
+//             agregar();
+//         });
+//     });
     var cont = 0;
     total = 0;
     subtotal = [];
