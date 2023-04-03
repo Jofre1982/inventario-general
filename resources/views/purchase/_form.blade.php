@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="provider_id">Proveedor</label>
-    <select class="form-control" name="provider_id" id="provider_id">
+    <select style="background-color: #1e1e2f;" class="form-control" name="provider_id" id="provider_id">
         @foreach($providers as $provider)
         <option value="{{$provider->id}}">{{$provider->name}} </option>
         @endforeach
@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label for="product_id">Producto</label>
-    <select class="form-control" name="product_id" id="product_id">
+    <select style="background-color: #1e1e2f;" class="form-control" name="product_id" id="product_id">
         @foreach($products as $product)
         <option value="{{$product->id}}">{{$product->name}}</option>
         @endforeach
@@ -26,7 +26,7 @@
     <label for="price">Precio</label>
     <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" placeholder="">
 </div>
-<div class="form-group">
+<div class="form-group" style="text-align:right">
     <button type="button" id="agregar" class="btn btn-primary floath-righ">Agregar Producto</button>
 </div>
 <div class="form-group">
@@ -34,45 +34,46 @@
     <div class="table-responsive col-md-12">
         <table id="detalles" class="table table-striped">
             <thead>
-                <tr>Eliminar</tr>
-                <tr>Producto</tr>
-                <tr>Precio</tr>
-                <tr>Cantidad</tr>
-                <tr>Subtotal</tr>
+                <th>Eliminar</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
             </thead>
             <tfoot>
                 <tr>
                     <th colspan="4">
-                        <p aling="right">TOTAL</p>
+                        <p style="text-align:right">TOTAL</p>
                     </th>
                     <th>
-                        <p aling="right">
+                        <p style="text-align:right">
                             <span id="total">PEN 0.00:</span>
                         </p>
                     </th>
                 </tr>
                 <tr id="dvOcultar">
                     <th colspan="4">
-                        <p aling="right">TOTAL IMPUESTO (18%):</p>
+                        <p style="text-align:right">TOTAL IMPUESTO (18%):</p>
                     </th>
-                    <p aling="right">
-                        <span id="total_impuesto">PEN 0.00</span>
-                    </p>
+                    <th>
+                        <p style="text-align:right">
+                            <span id="total_impuesto">PEN 0.00</span>
+                        </p>
                     </th>
                 </tr>
                 <tr>
                     <th colspan="4">
-                        <p aling="right">TOTAL PAGAR:</p>
+                        <p style="text-align:right">TOTAL PAGAR:</p>
                     </th>
-                    <p aling="right">
-                        <span aling="right" id="total_pagar_html">PEN 0.00</span>
-                        <input type="hidden" name="total" id="total_pagar">
-                    </p>
+                    <th>
+                        <p style="text-align:right">
+                            <span aling="right" id="total_pagar_html">PEN 0.00</span>
+                            <input type="hidden" name="total" id="total_pagar">
+                        </p>
                     </th>
                 </tr>
             </tfoot>
             <tbody>
-
             </tbody>
         </table>
     </div>

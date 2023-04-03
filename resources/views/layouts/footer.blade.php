@@ -23,7 +23,7 @@
             </li>
         </ul> -->
         <div class="copyright">
-            &copy; {{ now()->year }} {{ __('hecho por') }} <i class="tim-icons icon-heart-2"></i> {{ __('by JOFRE') }}
+            &copy; {{ now()->year }} {{ __('made') }} <i class="tim-icons icon-heart-2"></i> {{ __('by JOFRE') }}
             <!-- <a href="https://creative-tim.com" target="_blank">{{ __('Creative Tim') }}</a> &amp;
             <a href="https://updivision.com" target="_blank">{{ __('Updivision') }}</a> {{ __('for a better web') }}. -->
         </div>

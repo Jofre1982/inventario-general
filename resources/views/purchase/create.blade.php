@@ -19,28 +19,19 @@
 @include('purchase._form')
 
 {!! Form::close() !!}
-<button type="submit" id="guardar" class="btn btn-primary">Registrar</button><!--Por qué e puso un float?-->
-<a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
 
+<a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
+<button type="submit" id="guardar" class="btn btn-primary">Registrar</button>
 
 @endsection
 
 @push('js')
 <script>
-    console.log('ojo')
     $(document).ready(function() {
-        console.log("goteo")
-        $("#agregar").click(function() {
-            alert('Botón agregar presionado');
-            agregar();
-        });
+         $("#agregar").click(function() {
+             agregar();
+         });
     });
-//    $(document).ready(function() {
-//         $("#agregar").click(function() {
-//             alert('Aca funciona');
-//             agregar();
-//         });
-//     });
     var cont = 0;
     total = 0;
     subtotal = [];
@@ -80,15 +71,14 @@
         $('#total').html("PEN" + total.toFixed(2));
         total_impuesto = total * impuesto / 100;
         total_pagar = total + total_impuesto;
-        total = total-subtotal[index];
-        $("#total_impuesto").html("PEN" + total_impuesto.tofixed(2));
-        $("#total_pagar_html").html("PEN" + total_pagar.tofixed(2));
-        $("#total_pagar").vla(total_pagar.tofixed(2));
+        $("#total_impuesto").html("PEN" + total_impuesto.toFixed(2));
+        $("#total_pagar_html").html("PEN" + total_pagar.toFixed(2));
+        $("#total_pagar").val(total_pagar.toFixed(2));
 
     }
 
     function evaluar(){
-        if(total<0){
+        if(total>0){
             $("#guardar").show();
         } else{
             $("#guardar").hide();
@@ -102,7 +92,7 @@
         $("#total").html("PEN" + total);
         $("#total_impuesto").html("PEN" + total_impuesto);
         $("#total_pagar_html").html("PEN" + total_pagar_html);
-        $("#total_pagar").vla(total_pagar_html.tofixed(2));
+        $("#total_pagar").val(total_pagar_html.toFixed(2));
         $("#fila" + index).remove();
         evaluar();
     }
