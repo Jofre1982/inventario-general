@@ -17,11 +17,12 @@
 
 @include('purchase._form')
 
-{!! Form::close() !!}
+
 
 <a href="{{ route('purchases.index') }}" class="btn btn -ligth">Cancelar</a>
 <button type="submit" id="guardar" class="btn btn-primary mr-2">Registrar</button>
 
+{!! Form::close() !!}
 @endsection
 
 @push('js')

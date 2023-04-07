@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('code')->unique()->nullable();
             $table->string('name')->unique();
             $table->integer('stock')->default(0);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->decimal('sell_price',12,2);
             $table->enum('status',['ACTIVE','DEACTIVATE'])->default('ACTIVE');
             $table->unsignedBigInteger('category_id');

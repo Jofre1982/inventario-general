@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Provider;
 use App\Models\Purchase;
-use App\Models\Product; 
+use App\Models\Product;
 use App\Http\Requests\Purchase\StoreRequest;
 use App\Http\Requests\Purchase\UpdateRequest;
 use Carbon\Carbon;
@@ -25,7 +25,7 @@ class PurchaseController extends Controller
          return view('purchase.create', compact('providers', 'products'));
      }
 
-    
+
     public function store(StoreRequest $request)
     {
         $purchase = Purchase::create($request->all()+[
@@ -41,27 +41,33 @@ class PurchaseController extends Controller
 
         return redirect()->route('purchase.index');
 
-    }       
-   
+    }
+
     public function show(Purchase $purchase)
     {
-        return view('purchase.show', compact('purchase'));
+        $subtotal = 0;
+        $purchaseDetails = $purchase->purchaseDetails;
+        foreach ( $purchaseDetails as  $purchaseDetail) {
+            $subtotal += $purchaseDetails->quantity * $purchaseDetails->price;
+        }
+
+        return view('purchase.show', compact('purchase', 'purchaseDetails', 'subtotal'));
     }
 
    function edit(Purchase $purchase)
     {
         $providers = Provider::get();
-         return view('purchase.show', compact('purchase'));    
+         return view('purchase.show', compact('purchase'));
     }
 
-   
+
     public function update(UpdateRequest $request, Purchase $purchase)
     {
         $purchase->update($request->all());
         return redirect()->route('purchases.index');
     }
 
- 
+
     public function destroy(Purchase $purchase)
     {
        $purchase->delete();
