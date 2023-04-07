@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseDetails extends Model
 {
-    
+
     protected $fillable = [
-        'shopping_id',
+        'purchase_id',
         'product_id',
         'quantity',
         'price',
-            
+
     ];
     public function purchase(){
         return $this->belongsTo(Purchase::class);
