@@ -37,6 +37,7 @@ class PurchaseController extends Controller
         $result[] = array("product_id"=>$request->product_id[$key],
         "quantity"=>$request->quantity[$key], "price"=>$request->price[$key]);
         }
+
         $purchase->purchaseDetails()->createMany($result);
 
         return redirect()->route('purchase.index');

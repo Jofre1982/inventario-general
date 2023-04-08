@@ -39,11 +39,13 @@
     $("#guardar").hide();
 
     function agregar() {
+
         product_id = $("#product_id").val();
         producto = $("#product_id option:selected").text();
         quantity = $("#quantity").val();
         price = $("#price").val();
         impuesto = $("#tax").val();
+
         if (product_id != "" && quantity != "" && quantity > 0 && price != "") {
             subtotal[cont] = quantity * price;
             total = total + subtotal[cont];

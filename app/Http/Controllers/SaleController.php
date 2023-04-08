@@ -6,6 +6,8 @@ use App\Models\Sale;
 use App\Models\Client;
 use App\Http\Requests\Sale\StoreRequest;
 use App\Http\Requests\Sale\UpdateRequest;
+use App\Models\Provider;
+use App\Models\Product;
 
 class SaleController extends Controller
 {
@@ -15,14 +17,16 @@ class SaleController extends Controller
        return view('sale.index', compact('sales'));
     }
 
-   
+
     public function create()
     {
-        $clinets = Client::get();
-        return view('sale.index', compact('clients'));
+        $clients = Client::get();
+        $providers = Provider::get();
+        $products = Product::get();
+        return view('sale.create', compact('clients','providers','products'));
     }
 
-    
+
     public function store(StoreRequest $request)
     {
         $sale = Sale::create($request->all());
@@ -35,9 +39,9 @@ class SaleController extends Controller
         $sale->saleDetails()->createMany($result);
 
         return redirect()->route('sale.index');
-        
-    }       
-   
+
+    }
+
     public function show(Sale $sale)
     {
         return view('sale.show', compact('sale'));
@@ -46,17 +50,17 @@ class SaleController extends Controller
    function edit(Sale $sale)
     {
         $clinets = Client::get();
-        return view('sale.show', compact('sale'));    
+        return view('sale.show', compact('sale'));
     }
 
-   
+
     public function update(UpdateRequest $request, Sale $sale)
     {
        $sale->update($request->all());
        return redirect()->route('sales.index');
     }
 
- 
+
     public function destroy(Sale $sale)
     {
         $sale->delete();
