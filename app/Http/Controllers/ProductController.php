@@ -28,6 +28,7 @@ class ProductController extends Controller
 
     public function store(StoreRequest $request)
     {
+        $image_name="";
         if($request->hasFile('picture')){
             $file = $request->file('picture');
             $image_name = time().'_'.$file->getClientOriginalName();

@@ -36,10 +36,6 @@
     @endforeach
   </select>
 </div>
-<!-- <div class="custom-file mb-4">
-  <input type="file" class="custom-file-input" id="image" name="image" lang="es">
-  <label class="custom-file-label" for="image">Seleccione archivo</label>
-</div> -->
 <div class="card-body">
   <h4 class="card-title d-flex">Imagen de producto
     <small class="ml-auto aling-self-end">
@@ -51,5 +47,4 @@
 <button type="submit" class="btn btn-primary mr-2">Registrar</button>
 <a href="{{ route('products.index') }}" class="btn btn -ligth">Cancelar</a>
 {!! Form::close() !!}
-
 @endsection
