@@ -48,9 +48,8 @@ class PurchaseController extends Controller
         $subtotal = 0;
         $purchaseDetails = $purchase->purchaseDetails;
         foreach ($purchaseDetails as  $purchaseDetail) {
-            $subtotal += $purchaseDetails->quantity * $purchaseDetails->price;
+            $subtotal += $purchaseDetail->quantity*$purchaseDetail->price;
         }
-
         return view('purchase.show', compact('purchase', 'purchaseDetails', 'subtotal'));
     }
 
