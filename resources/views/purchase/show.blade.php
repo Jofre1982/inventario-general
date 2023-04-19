@@ -18,7 +18,7 @@
                     <div class="col-lg-8 pl-lg-5">
                         <div class="d-flex justify-content-between">
                         </div>
-                        <!-- Desde aqui va la tabla y demas -->
+                        <!-- Desde aqui va la tabla-->
                         <div class="form-group row">
                             <div class="col-md-6 text center">
                                 <label class="form-control-label" for="nombre">Proveedor</label>
@@ -26,64 +26,68 @@
                             </div>
 
                             <div class="col-md-6 text center">
-                                <label class="form-control-label" for="nombre">Proveedor</label>
+                                <label class="form-control-label" for="nombre">Numero de Compra</label>
                                 <p>{{$purchase->id}}</p>
                             </div>
                         </div>
-                        <div class="profile-feed">
-                            <div class="form-group">
-                                <h4 class="card-title">Detalle de la Compra</h4>
-                                <div class="table-responsive col-md-12">
-                                    <table id="detalles" class="table table-striped">
-                                        <thead>
-                                            <th>Eliminar</th>
-                                            <th>Producto</th>
-                                            <th>Precio</th>
-                                            <th>Cantidad</th>
-                                            <th>Subtotal</th>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="4">
-                                                    <p style="text-align:right">TOTAL</p>
-                                                </th>
-                                                <th>
-                                                    <p style="text-align:right">
-                                                        <span id="total">PEN 0.00:</span>
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            <tr id="dvOcultar">
-                                                <th colspan="4">
-                                                    <p style="text-align:right">TOTAL IMPUESTO ({{$purchase->tax}}):</p>
-                                                </th>
-                                                <th>
-                                                    <p style="text-align:right">
-                                                        <span id="total_impuesto">PEN 0.00</span>
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="4">
-                                                    <p style="text-align:right">TOTAL PAGAR:</p>
-                                                </th>
-                                                <th>
-                                                    <p style="text-align:right">
-                                                        <span aling="right" id="total_pagar_html">PEN 0.00</span>
-                                                        <input type="hidden" name="total" id="total_pagar">
-                                                    </p>
-                                                </th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                        <br /><br />
+                        <div class="form-group">
+                            <h4 class="card-title ml-3">Detalle de la Compra</h4>
+                            <div class="table-responsive col-md-12">
+                                <table id="detalles" class="table table-striped">
+                                    <thead>
+                                        <th>Producto</th>
+                                        <th>Precio (PEN)</th>
+                                        <th>Cantidad</th>
+                                        <th>Subtotal (PEN)</th>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                            <th colspan="3">
+                                                <p style="text-align:right">SUBTOTAL:</p>
+                                            </th>
+                                            <th>
+                                                <p style="text-align:right">s/{{number_format($subtotal,2)}}
+                                                </p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3">
+                                                <p style="text-align:right">TOTAL IMPUESTO ({{$purchase->tax}}):</p>
+                                            </th>
+                                            <th>
+                                                <p style="text-align:right">s/{{number_format($subtotal*$purchase->tax/100,2)}}
+                                                </p>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3">
+                                                <p style="text-align:right">TOTAL:</p>
+                                            </th>
+                                            <th>
+                                                <p style="text-align:right">s/{{number_format($purchase->total,2)}}
+                                                </p>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach($purchaseDetails as $purchaseDetail)
+                                        <tr>
+                                            <td>{{$purchaseDetail->product->name}}</td>
+                                            <td>s/{{$purchaseDetail->price}}</td>
+                                            <td>{{$purchaseDetail->quantity}}</td>
+                                            <td>s/{{number_format($purchaseDetail->quantity*$purchaseDetail->price,2)}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
 
-                            <div class="col-sm-6">
-                                <a href="{{ route('purchases.index') }}" class="btn btn-primary float-right">
-                                    REGRESAR
-                                </a>
-                            </div>
+                        <div class="col-sm-6">
+                            <a href="{{ route('purchases.index') }}" class="btn btn-primary float-right">
+                                REGRESAR
+                            </a>
                         </div>
                     </div>
                 </div>
