@@ -44,7 +44,12 @@ class SaleController extends Controller
 
     public function show(Sale $sale)
     {
-        return view('sale.show', compact('sale'));
+        $subtotal = 0;
+        $saleDetails = $sale->saleDetails;
+        foreach ($saleDetails as $saleDetail) {
+            $subtotal += $saleDetail->quantity*$saleDetail->price-$saleDetail->quantity*$saleDetail->sale;
+        }
+        return view('sale.show', compact('sale','saleDetails', 'subtotal'));
     }
 
    function edit(Sale $sale)
@@ -66,5 +71,16 @@ class SaleController extends Controller
         $sale->delete();
         return redirect()->route('sales.index');
 
+    }
+    
+    public function pdf (Sale $sale)
+    {
+        $subtotal = 0;
+        $saleDetails = $sale->saleDetails;
+        foreach ($saleDetails as $saleDetail) {
+            $subtotal += $saleDetail->quantity*$saleDetail->price-$saleDetail->quantity*$saleDetail->sale;
+        }
+       $pdf = PDF::loadview('sale.pdf', compact('sale','subtotal','saleDetails'));
+       return $pdf->download('Reporte_de_venta_'.$sale->id.'.pdf');
     }
 }

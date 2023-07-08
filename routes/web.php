@@ -26,9 +26,16 @@ Route::resource('providers','App\Http\Controllers\ProviderController');
 Route::resource('purchases','App\Http\Controllers\PurchaseController');
 Route::resource('sales','App\Http\Controllers\SaleController');
 
+Route::get('purchases/pdf/{purchase}','PurchaseController@pdf');
+Route::get('sales/pdf/{sales}','SaleController@pdf');
+
+Route::resource('user','BusinessController')->only(['index','update']);
+Route::resource('user','PrinterController')->only(['index','update']);
 
 Route::get('/users', function () {
     return view('users.index');
+
+	
 
 });
 
