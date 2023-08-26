@@ -9,7 +9,7 @@ use App\Http\Requests\Purchase\StoreRequest;
 use App\Http\Requests\Purchase\UpdateRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class PurchaseController extends Controller
 {
@@ -84,4 +84,6 @@ class PurchaseController extends Controller
         $pdf = PDF::loadView('purchase.pdf', compact('$purchase','$subtotal','$purchaseDetails'));
         return $pdf->download('Reporte_de_compras_'.$purchase->id.'.pdf');
     }
+
+    
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\Sale\StoreRequest;
 use App\Http\Requests\Sale\UpdateRequest;
 use App\Models\Provider;
 use App\Models\Product;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class SaleController extends Controller
 {

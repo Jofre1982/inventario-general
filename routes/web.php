@@ -26,11 +26,14 @@ Route::resource('providers','App\Http\Controllers\ProviderController');
 Route::resource('purchases','App\Http\Controllers\PurchaseController');
 Route::resource('sales','App\Http\Controllers\SaleController');
 
-Route::get('purchases/pdf/{purchase}','PurchaseController@pdf');
-Route::get('sales/pdf/{sales}','SaleController@pdf');
+Route::get('purchases/pdf/{purchase}','PurchaseController@pdf')->name('purchases.pdf');
+Route::get('sales/pdf','SaleController@pdf');
+Route::get('sales/print/{sale}','SaleController@print');
 
-Route::resource('user','BusinessController')->only(['index','update']);
-Route::resource('user','PrinterController')->only(['index','update']);
+Route::resource('business','BusinessController')->only(['index','update']);
+Route::resource('printer','PrinterController')->only(['index','update']);
+
+Route::get('purchases/upload/{purchase}','PurchaseController@upload');
 
 Route::get('/users', function () {
     return view('users.index');
