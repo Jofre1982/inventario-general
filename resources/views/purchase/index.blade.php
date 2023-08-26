@@ -49,9 +49,9 @@
                         <td>{{$purchase->total}}</td>
                         <td>{{$purchase->status}}</td>
                         <td>
-                            <button class="btn btn-primary btn-link" href="{{route('purchases.pdf', $purchase)}}"><i class="fa fa-download"></i></button>
+                            <a href="{{route('purchases.pdf', $purchase)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
                             <button class="btn btn-primary btn-link" href="#"><i class="fa fa-print"></i></button>
-                        </td>
+                        </td>>
 
                         </td>
                     </tr>

@@ -45,7 +45,7 @@
                         <td>{{$sale->total}}</td>
                         <td>{{$sale->status}}</td>
                         <td>
-                            <button class="btn btn-primary btn-link" href="{{route('sales.pdf', $sale)}}"><i class="fa fa-download"></i></button>
+                            <a href="{{route('sales.pdf', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
                             <button class="btn btn-primary btn-link" href="#"><i class="fa fa-print"></i></button>
                         </td>
                     </tr>

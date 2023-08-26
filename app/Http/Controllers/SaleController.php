@@ -10,7 +10,7 @@ use App\Models\Provider;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SaleController extends Controller
 {
@@ -57,7 +57,7 @@ class SaleController extends Controller
         return view('sale.show', compact('sale','saleDetails', 'subtotal'));
     }
 
-   function edit(Sale $sale)
+    public function edit(Sale $sale)
     {
         $clinets = Client::get();
         return view('sale.show', compact('sale'));

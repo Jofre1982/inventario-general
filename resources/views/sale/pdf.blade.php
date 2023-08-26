@@ -108,8 +108,6 @@
                     <tr>
                         <th>
                             <p id="proveedor">Nombre: {{$sale->user->name}} <br>
-                            <!-- Direccion: {{$sale->user->address}} <br>
-                            Telefono: {{$sale->user->phone}} <br> -->
                             Email: {{$sale->user->email}}
                             </p>
                         </th>
@@ -181,9 +179,7 @@
     <br>
     <footer>
     <div id="datos">
-        <p id="encabezado">
-            <b>{{$company->name}}</b><br>{{$company->description}}<br>Telefono:{{$company->phone}}<br>Email:{{$company->email}}
-        </p>
+        
     </div>
 
     </footer>  

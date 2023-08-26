@@ -199,9 +199,7 @@
     <br>
     <footer>
     <div id="datos">
-        <p id="encabezado">
-            <b>{{$company->name}}</b><br>{{$company->description}}<br>Telefono:{{$company->phone}}<br>Email:{{$company->email}}
-        </p>
+     
     </div>
 
     </footer>  
