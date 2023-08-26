@@ -32,7 +32,7 @@
             agregar();
         });
     });
-    var cont = 0;
+    var cont = 1;
     total = 0;
     subtotal = [];
 
@@ -60,7 +60,7 @@
             if (parseInt(stock) >= parseInt(quantity)) {
                 subtotal[cont] = (quantity * price) - (quantity * price * discount / 100);
                 total = total + subtotal[cont];
-                var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm"  onclick="eliminar(' + cont + ');"><i class="fa fa-times"></button></td><td><input type="hidden" name="product_id[]" value="' + product_id + '">' + producto + '</td><td><input type="hidden" id="price[]" name="price[]" value="' + parceFloat(price).toFixed(2) + '"> <input class="form-control" type="number" id="price[]" value="' + parceFloat(price).toFixed(2) + '" disabled> </td><td><input type="hidden" name="discount[]" value="' + parceFloat(discount) + '"> <input class="form-control" type="number" value="' + parceFloat(discount) + '" disabled> </td><td><input type="hidden" name="quantity[]" value="' + quantity + '"> <input class="form-control" type="number" value="' + quantity + '" disabled> </td><td aling="right">s/' +  parceFloat(subtotal[cont]).toFixed(2) + ' </td></tr>';
+                var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm"  onclick="eliminar(' + cont + ');"><i class="fa fa-times"></button></td><td><input type="hidden" name="product_id[]" value="' + product_id + '">' + producto + '</td><td><input type="hidden" id="price[]" name="price[]" value="' + parseFloat(price).toFixed(2) + '"> <input class="form-control" type="number" id="price[]" value="' + parseFloat(price).toFixed(2) + '" disabled> </td><td><input type="hidden" name="discount[]" value="' + parseFloat(discount) + '" disabled> <input class="form-control" type="number" value="' + parseFloat(discount) + '" disabled> </td><td><input type="hidden" name="quantity[]" value="' + quantity + '"> <input class="form-control" type="number" value="' + quantity + '" disabled> </td><td aling="right">s/' +  parseFloat(subtotal[cont]).toFixed(2) + ' </td></tr>';
                 cont++;
                 limpiar();
                 totales();

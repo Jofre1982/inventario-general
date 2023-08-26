@@ -8,6 +8,8 @@ use App\Http\Requests\Sale\StoreRequest;
 use App\Http\Requests\Sale\UpdateRequest;
 use App\Models\Provider;
 use App\Models\Product;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade as PDF;
 
 class SaleController extends Controller
@@ -22,15 +24,18 @@ class SaleController extends Controller
     public function create()
     {
         $clients = Client::get();
-        $providers = Provider::get();
         $products = Product::get();
-        return view('sale.create', compact('clients','providers','products'));
+        return view('sale.create', compact('clients','products'));
     }
 
 
     public function store(StoreRequest $request)
     {
-        $sale = Sale::create($request->all());
+        $sale = Sale::create($request->all()+[
+            'user_id'=>Auth::user()->id,
+            'sale_date'=>Carbon::now('America/lima'),
+        ]);
+           
 
         foreach ($request->product_id as $key => $product){
         $result[] = array("product_id"=>$request->product_id[$key],
@@ -38,8 +43,7 @@ class SaleController extends Controller
         "discount"=>$request->discount[$key] );
         }
         $sale->saleDetails()->createMany($result);
-
-        return redirect()->route('sale.index');
+        return redirect()->route('sales.index');
 
     }
 
@@ -74,7 +78,7 @@ class SaleController extends Controller
 
     }
     
-    public function pdf (Sale $sale)
+    public function pdf(Sale $sale)
     {
         $subtotal = 0;
         $saleDetails = $sale->saleDetails;

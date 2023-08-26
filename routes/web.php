@@ -27,7 +27,7 @@ Route::resource('purchases','App\Http\Controllers\PurchaseController');
 Route::resource('sales','App\Http\Controllers\SaleController');
 
 Route::get('purchases/pdf/{purchase}','PurchaseController@pdf')->name('purchases.pdf');
-Route::get('sales/pdf','SaleController@pdf');
+Route::get('sales/pdf','SaleController@pdf')->name('sales.pdf');
 Route::get('sales/print/{sale}','SaleController@print');
 
 Route::resource('business','BusinessController')->only(['index','update']);

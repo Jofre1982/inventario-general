@@ -13,13 +13,14 @@
 <div class="form-group">
     <label for="product_id">Producto</label>
     <select style="background-color: #1e1e2f;" class="form-control" name="product_id" id="product_id">
+        <option value=" " disabled selected>Seleccione un producto</option>
         @foreach($products as $product)
         <option value="{{$product->id}}_{{$product->stock}}_{{$product->sell_price}}">{{$product->name}}</option>
         @endforeach
     </select>
 </div class="form-group">
 <label for="">Stock Actual</label>
-<input type="text" class="form-control" name="" id="stock" value="" disabled>
+<input type="text" class="form-control" name="stock" id="stock" value="{{$product->stock}}" disabled>
 <div>
 </div>
 <div class="form-group">
@@ -28,7 +29,7 @@
 </div>
 <div class="form-group">
     <label for="price">Precio de Venta</label>
-    <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId" disabled>
+    <input type="number" class="form-control" name="price" id="price" value="{{$product->sell_price}}" aria-describedby="helpId" disabled>
 </div>
 <div class="form-group">
     <label for="discount">Descuento %</label>
@@ -62,7 +63,7 @@
                 </tr>
                 <tr>
                     <th colspan="4">
-                        <p style="text-align:right">TOTAL IMPUESTO (18%):</p>
+                        <p style="text-align:right">TOTAL IMPUESTO ():</p>
                     </th>
                     <th>
                         <p style="text-align:right">

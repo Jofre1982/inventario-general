@@ -34,11 +34,13 @@ class PurchaseController extends Controller
             'purchase_date' => Carbon::now('America/Bogota'),
         ]);
         foreach ($request->product_id as $key => $product) {
-            $result[] = [
+            $result[] = array(
                 "product_id" => $request->product_id[$key],
                 "quantity" => $request->quantity[$key],
-                "price" => $request->price[$key]
-            ];
+                "price" => $request->price[$key],
+                "discount" => $request->discount[$key]
+            );
+                            
         }
         $purchase->purchaseDetails()->createMany($result);
         return redirect()->route('purchases.index');

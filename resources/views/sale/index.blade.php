@@ -20,7 +20,7 @@
     <div class="card">
         <div class="card-body p-0">
             <div id="dataTableBuilder_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-export btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button" href="{{ route('sales.pdf', $sale) }}" aria-haspopup="true" aria-expanded="false"><span><i class="fa fa-download"></i> Exportar&nbsp;<span class="caret"></span></span></button></div> <button class="btn btn-secondary buttons-print btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-print"></i> Imprimir</span></button>
+                <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-export btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"  aria-haspopup="true" aria-expanded="false"><span><i class="fa fa-download"></i> Exportar&nbsp;<span class="caret"></span></span></button></div> <button class="btn btn-secondary buttons-print btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-print"></i> Imprimir</span></button>
             </div>
             <div id="dataTableBuilder_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTableBuilder"></label></div>
             <div id="dataTableBuilder_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
@@ -44,14 +44,9 @@
                         <td>{{$sale->sale_date}}</td>
                         <td>{{$sale->total}}</td>
                         <td>{{$sale->status}}</td>
-                        <td style="width:50px;">
-
-                            {!!Form::open(['route'=>['sales.destroy', $sale],'method'=>'DELETE']) !!}
-                            <a href="{{route('sales.show',$sale)}}" class="btn btn-default btn-xs">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                            {!! Form::close() !!}
+                        <td>
+                            <button class="btn btn-primary btn-link" href="{{route('sales.pdf', $sale)}}"><i class="fa fa-download"></i></button>
+                            <button class="btn btn-primary btn-link" href="#"><i class="fa fa-print"></i></button>
                         </td>
                     </tr>
                     @endforeach
