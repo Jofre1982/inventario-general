@@ -6,7 +6,6 @@ use App\Models\Sale;
 use App\Models\Client;
 use App\Http\Requests\Sale\StoreRequest;
 use App\Http\Requests\Sale\UpdateRequest;
-use App\Models\Provider;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -33,16 +32,14 @@ class SaleController extends Controller
     {
         $sale = Sale::create($request->all()+[
             'user_id'=>Auth::user()->id,
-            'sale_date'=>Carbon::now('America/lima'),
+            'sale_date'=>Carbon::now('America/Bogota'),
         ]);
            
 
         foreach ($request->product_id as $key => $product){
-        $result[] = array("product_id"=>$request->product_id[$key],
-        "quantity"=>$request->quantity[$key], "price"=>$request->price[$key],
-        "discount"=>$request->discount[$key] );
+        $results[] = ["product_id"=>$request->product_id[$key],"quantity"=>$request->quantity[$key], "price"=>$request->price[$key],"discount"=>$request->discount[$key]];
         }
-        $sale->saleDetails()->createMany($result);
+        $sale->saleDetails()->createMany($results);
         return redirect()->route('sales.index');
 
     }

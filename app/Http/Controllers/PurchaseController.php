@@ -34,15 +34,9 @@ class PurchaseController extends Controller
             'purchase_date' => Carbon::now('America/Bogota'),
         ]);
         foreach ($request->product_id as $key => $product) {
-            $result[] = array(
-                "product_id" => $request->product_id[$key],
-                "quantity" => $request->quantity[$key],
-                "price" => $request->price[$key],
-                "discount" => $request->discount[$key]
-            );
-                            
+            $results[] = ["product_id" => $request->product_id[$key],"quantity" => $request->quantity[$key],"price" => $request->price[$key],];                     
         }
-        $purchase->purchaseDetails()->createMany($result);
+        $purchase->purchaseDetails()->createMany($results);
         return redirect()->route('purchases.index');
     }
 
@@ -59,7 +53,7 @@ class PurchaseController extends Controller
     public function edit(Purchase $purchase)
     {
         $providers = Provider::get();
-        return view('purchase.show', compact('purchase'));
+        return view('purchase.edit', compact('purchase'));
     }
 
 
