@@ -46,7 +46,7 @@
         price = $("#price").val();
         impuesto = $("#tax").val();
 
-        if (product_id != "" && quantity != "" && quantity > 0 && price != "") {
+        if (product_id != "" && quantity != "" && quantity > 0 && impuesto != ""  && price != "") {
             subtotal[cont] = quantity * price;
             total = total + subtotal[cont];
             var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');"><i class="fa fa-times"></button></td><td><input type="hidden" name="product_id[]" value="' + product_id + '">' + producto + '</td><td><input type = "hidden" id="price[]" name="price[]" value="' + price +'"><input class="form-control" type="number" id="price[]" value="' + price +'" disabled> </td><td><input type="hidden" name="quantity[]" value="' + quantity + '"><input class="form-control" type="number" value="' + quantity + '"disabled></td> <td aling="right">s/' + subtotal[cont] + ' </td></tr>';

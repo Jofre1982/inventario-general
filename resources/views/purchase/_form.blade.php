@@ -8,7 +8,7 @@
 </div>
 <div class="form-group">
     <label for="tax">Impuesto</label>
-    <input type="number" class="form-control" name="tax" id="tax" aria-describedby="helpId" placeholder="%18">
+    <input type="number" class="form-control" name="tax" id="tax" aria-describedby="helpId">
 </div>
 <div class="form-group">
     <label for="product_id">Producto</label>
