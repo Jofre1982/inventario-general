@@ -50,7 +50,7 @@
                         <td>{{$purchase->status}}</td>
                         <td>
                             <a href="{{route('purchases.pdf', $purchase)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
-                            <button class="btn btn-primary btn-link" href="#"><i class="fa fa-print"></i></button>
+                            <a href="{{route('purchases.show', $purchase)}}" class="btn btn-primary btn-link" ><i class="fa fa-eye"></i></button></a>
                         </td>>
 
                         </td>

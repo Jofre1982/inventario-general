@@ -73,4 +73,15 @@ class ProductController extends Controller
         return redirect()->route('products.index');
 
     }
+    public function change_status(Product $product)
+    {
+        if ($product->status == 'ACTIVE') {
+            $product->update(['status'=>'DEACTIVATE']);
+            return redirect()->back();
+        } else {
+            $product->update(['status'=>'ACTIVATE']);
+            return redirect()->back();
+        }
+        
+    }
 }

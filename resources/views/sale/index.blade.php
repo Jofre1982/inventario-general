@@ -46,7 +46,8 @@
                         <td>{{$sale->status}}</td>
                         <td>
                             <a href="{{route('sales.pdf', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
-                            <button class="btn btn-primary btn-link" href="#"><i class="fa fa-print"></i></button>
+                            <a href="{{route('sales.print', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-print"></i></button></a>
+                            <a href="#" class="btn btn-primary btn-link" ><i class="fa fa-eye"></i></button></a>
                         </td>
                     </tr>
                     @endforeach

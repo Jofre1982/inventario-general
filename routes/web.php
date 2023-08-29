@@ -23,17 +23,21 @@ Route::resource('categories','App\Http\Controllers\CategoryController');
 Route::resource('clients','App\Http\Controllers\ClientController');
 Route::resource('products','App\Http\Controllers\ProductController');
 Route::resource('providers','App\Http\Controllers\ProviderController');
-Route::resource('purchases','App\Http\Controllers\PurchaseController');
-Route::resource('sales','App\Http\Controllers\SaleController');
+Route::resource('purchases','App\Http\Controllers\PurchaseController')->except(['edit','update','destroy']);
+Route::resource('sales','App\Http\Controllers\SaleController')->except(['edit','update','destroy']);
 
 Route::get('purchases/pdf/{purchase}','App\Http\Controllers\PurchaseController@pdf')->name('purchases.pdf');
 Route::get('sales/pdf/{sale}','App\Http\Controllers\SaleController@pdf')->name('sales.pdf');
-Route::get('sales/print/{sale}','App\Http\Controllers\SaleController@print');
+Route::get('sales/print/{sale}','App\Http\Controllers\SaleController@print')->name('sales.print');
 
 Route::resource('business','BusinessController')->only(['index','update']);
 Route::resource('printer','PrinterController')->only(['index','update']);
 
-Route::get('purchases/upload/{purchase}','PurchaseController@upload');
+Route::get('purchases/upload/{purchase}','App\Http\Controllers\SaleController@upload')->name('upload.purchases');
+
+Route::get('cange_status/products/{product}','App\Http\Controllers\ProductController@cange_status');
+Route::get('cange_status/purchases/{purchase}','App\Http\Controllers\PurchaseController@cange_status');
+Route::get('cange_status/sales/{sale}','App\Http\Controllers\SaleController@cange_status');
 
 Route::get('/users', function () {
     return view('users.index');
