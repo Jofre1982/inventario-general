@@ -1,14 +1,14 @@
-@extends('layouts.app', ['page' => __('Ventas'), 'pageSlug' => 'sales'])
+@extends('layouts.app', ['page' => __('Dato'), 'pageSlug' => 'reports_date'])
 
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Lista de Ventas</h1>
+                <h1>Dato</h1>
             </div>
             <div class="col-sm-6">
-                <a class="btn btn-primary float-right" href="{{ route('sales.create') }}">
+                <a class="btn btn-primary float-right" href="#">
                     Nuevo
                 </a>
             </div>
@@ -45,7 +45,7 @@
                         <td>{{$sale->total}}</td>
                         <td>{{$sale->status}}</td>
                         <td>
-                            <a href="{{route('sales.pdf', $sale)}}" class="btn btn-primary btn-link" ><i class="tim-icons icon-cloud-download-93"></i></button></a>
+                            <a href="{{route('sales.pdf', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
                             <a href="{{route('sales.print', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-print"></i></button></a>
                             <a href="#" class="btn btn-primary btn-link" ><i class="fa fa-eye"></i></button></a>
                         </td>

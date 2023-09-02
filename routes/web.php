@@ -35,9 +35,14 @@ Route::resource('printer','PrinterController')->only(['index','update']);
 
 Route::get('purchases/upload/{purchase}','App\Http\Controllers\SaleController@upload')->name('upload.purchases');
 
-Route::get('cange_status/products/{product}','App\Http\Controllers\ProductController@cange_status');
-Route::get('cange_status/purchases/{purchase}','App\Http\Controllers\PurchaseController@cange_status');
-Route::get('cange_status/sales/{sale}','App\Http\Controllers\SaleController@cange_status');
+Route::get('change_status/products/{product}','App\Http\Controllers\ProductController@change_status')->name('change.status.product');
+Route::get('change_status/purchases/{purchase}','App\Http\Controllers\PurchaseController@change_status')->name('change.status.purchase');
+Route::get('change_status/sales/{sale}','App\Http\Controllers\SaleController@change_status')->name('change.status.sale');
+
+Route::get('sales/reports_day','App\Http\Controllers\SaleController@reports_day')->name('reports.day');
+Route::get('sales/reports_date','App\Http\Controllers\SaleController@reports_date')->name('reports.date');
+
+Route::post('sales/reports_results','App\Http\Controllers\SaleController@reports_results')->name('reports.results');
 
 Route::get('/users', function () {
     return view('users.index');

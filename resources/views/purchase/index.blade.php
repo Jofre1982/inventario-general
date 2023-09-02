@@ -49,7 +49,7 @@
                         <td>{{$purchase->total}}</td>
                         <td>{{$purchase->status}}</td>
                         <td>
-                            <a href="{{route('purchases.pdf', $purchase)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
+                            <a href="{{route('purchases.pdf', $purchase)}}" class="btn btn-primary btn-link" ><i class="tim-icons icon-cloud-download-93"></i></button></a>
                             <a href="{{route('purchases.show', $purchase)}}" class="btn btn-primary btn-link" ><i class="fa fa-eye"></i></button></a>
                         </td>>
 

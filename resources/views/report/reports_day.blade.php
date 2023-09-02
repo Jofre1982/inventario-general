@@ -1,20 +1,40 @@
-@extends('layouts.app', ['page' => __('Ventas'), 'pageSlug' => 'sales'])
+@extends('layouts.app', ['page' => __('Reporte Diario'), 'pageSlug' => 'reports_day'])
 
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Lista de Ventas</h1>
+                <h1>Reporte Diario</h1>
             </div>
             <div class="col-sm-6">
-                <a class="btn btn-primary float-right" href="{{ route('sales.create') }}">
+                <a class="btn btn-primary float-right" href="#">
                     Nuevo
                 </a>
             </div>
         </div>
     </div>
 </section>
+<div class="row">
+    <div class="col-12 col-md-4 text-center">
+        <span>Fecha de Consulta: <b> </b></span>
+        <div class="form-group">
+            <strong>{{\Carbon\Carbon::now()->format('d/m/y')}}</strong>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 text-center">
+        <span>Cantidad de Registros: <b> </b></span>
+        <div class="form-group">
+            <strong>{{$sales->count()}}</strong>
+        </div>
+    </div>
+    <div class="col-12 col-md-4 text-center">
+        <span>Total de ingresos: <b> </b></span>
+        <div class="form-group">
+            <strong>{{$total}}</strong>
+        </div>
+    </div>
+</div>
 <div class="content px-3">
     <div class="clearfix"></div>
     <div class="card">
@@ -45,7 +65,7 @@
                         <td>{{$sale->total}}</td>
                         <td>{{$sale->status}}</td>
                         <td>
-                            <a href="{{route('sales.pdf', $sale)}}" class="btn btn-primary btn-link" ><i class="tim-icons icon-cloud-download-93"></i></button></a>
+                            <a href="{{route('sales.pdf', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-download"></i></button></a>
                             <a href="{{route('sales.print', $sale)}}" class="btn btn-primary btn-link" ><i class="fa fa-print"></i></button></a>
                             <a href="#" class="btn btn-primary btn-link" ><i class="fa fa-eye"></i></button></a>
                         </td>

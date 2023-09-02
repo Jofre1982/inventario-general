@@ -72,7 +72,7 @@
 
                         <li @if ($pageSlug=='products' ) class="active " @endif>
                             <a href="{{ route('products.index')  }}">
-                                <i class="tim-icons icon-notes"></i>
+                                <i class="tim-icons icon-paper"></i>
                                 <p>{{ __('PRODUCTOS') }}</p>
                             </a>
                         </li>
@@ -98,6 +98,30 @@
                             <a href="{{ route('sales.index')  }}">
                                 <i class="tim-icons icon-money-coins"></i>
                                 <p>{{ __('VENTAS') }}</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#reportes" aria-expanded="true">
+                    <i class="tim-icons icon-chart-bar-32"></i>
+                    <span class="nav-link-text">{{ __('REPORTES') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse" id="reportes">
+                    <ul class="nav pl-4">
+                        <li @if ($pageSlug=='reports_day' ) class="active " @endif>
+                            <a href="{{ route('reports.day') }}">
+                                <i class="tim-icons icon-chart-pie-36"></i>
+                                <p>{{ __('DIARIO') }}</p>
+                            </a>
+                        </li>
+                        <li @if ($pageSlug=='reports_date' ) class="active " @endif>
+                            <a href="{{ route('reports.date') }}">
+                                <i class="tim-icons icon-notes"></i>
+                                <p>{{ __('DATOS') }}</p>
                             </a>
                         </li>
 

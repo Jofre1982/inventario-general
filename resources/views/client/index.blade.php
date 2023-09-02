@@ -50,7 +50,7 @@
 
                             {!!Form::open(['route'=>['clients.destroy', $client],'method'=>'DELETE']) !!}
                             <a href="{{route('clients.edit',$client)}}" class="btn btn-default btn-xs">
-                                <i class="fa fa-edit"></i>
+                                <i class="tim-icons icon-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
                             {!! Form::close() !!}

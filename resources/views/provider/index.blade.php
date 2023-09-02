@@ -47,7 +47,7 @@
 
                             {!!Form::open(['route'=>['providers.destroy', $provider],'method'=>'DELETE']) !!}
                             <a href="{{route('providers.edit',$provider)}}" class="btn btn-default btn-xs">
-                                <i class="fa fa-edit"></i>
+                                <i class="tim-icons icon-pencil"></i>
                             </a>
                             <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
                             {!! Form::close() !!}
