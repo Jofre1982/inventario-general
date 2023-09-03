@@ -24,7 +24,7 @@ class ReportController extends Controller
         $total = $sales->sum('total');
         return view('report.reports_date', compact('sales', 'total'));
     }
-    public function reports_results(Request $request){
+    public function report_results(Request $request){
         $fi = $request->fecha_ini.'00:00:00';
         $ff = $request->fecha_fin.'23:59:59';
         $sales = Sale::whereBetween('sale_date',[ $fi, $ff])->get();

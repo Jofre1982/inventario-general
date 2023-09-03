@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Business;
-use App\Http\Request\Business\UpdateRequest;
+use App\Models\Business;
+use App\Http\Requests\Business\UpdateRequest;
 
 class BusinessController extends Controller
 {

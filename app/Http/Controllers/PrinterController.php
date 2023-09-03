@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Printer;
-use App\Http\Request\Printer\UpdateRequest;
+use App\Models\Printer;
+use App\Http\Requests\Printer\UpdateRequest;
 
 class PrinterController extends Controller
 {
