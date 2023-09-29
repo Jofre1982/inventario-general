@@ -15,12 +15,12 @@ class ReportController extends Controller
 }
 
     public function reports_day(){
-        $sales = Sale::whereDate('sale_date', Carbon::today())->get();
+        $sales = Sale::whereDate('sale_date', Carbon::today('America/Bogota'))->get();
         $total = $sales->sum('total');
         return view('report.reports_day', compact('sales', 'total'));
     }
     public function reports_date(){
-        $sales = Sale::whereDate('sale_date', Carbon::today())->get();
+        $sales = Sale::whereDate('sale_date', Carbon::today('America/Bogota'))->get();
         $total = $sales->sum('total');
         return view('report.reports_date', compact('sales', 'total'));
     }
@@ -29,7 +29,7 @@ class ReportController extends Controller
         $ff = $request->fecha_fin.'23:59:59';
         $sales = Sale::whereBetween('sale_date',[ $fi, $ff])->get();
         $total = $sales->sum('total');
-        return redirect()->route('reports.date', compact('sales', 'total'));
+        return view('reports.date', compact('sales', 'total'));
     }
     
 }

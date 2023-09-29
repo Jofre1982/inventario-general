@@ -53,10 +53,10 @@
         <div class="fixed-plugin">
             <div class="dropdown show-dropdown">
                 <a href="#" data-toggle="dropdown">
-                <i class="fa fa-cog fa-2x"> </i>
+                <i class="tim-icons icon-atom"> </i>
                 </a>
                 <ul class="dropdown-menu">
-                <li class="header-title"> CAMBIA DE COLOR TU MENU</li>
+                <li class="header-title"> CAMBIA EL COLOR DE TU MENU</li>
                 <li class="adjustments-line">
                     <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors text-center">

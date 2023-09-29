@@ -43,7 +43,9 @@
                             <a href="{{route('products.show',$product   )}}">{{$product->name}}</a>
                         </td>
                         <td>{{$product->stock}}</td>
+                        
                         <td>{{$product->status}}</td>
+                        
                         <td>{{$product->category->name}}</td>
                         <td style="width:50px;">
 

@@ -7,12 +7,12 @@
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-dompdf": "^2.0",
+        "fxneiram/shinobi": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
-        "laravelcollective/html": "^6.3",
         "mike42/escpos-php": "^4.0"
     },
     "require-dev": {
