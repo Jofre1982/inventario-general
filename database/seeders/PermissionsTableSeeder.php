@@ -171,19 +171,19 @@ class PermissionsTableSeeder extends Seeder
         //Imprimir
         Permission::create([
             'name'=>'Imprimir boleta de venta',
-            'slug'=>'sales.pdf',
+            'slug'=>'sales.print',
             'description'=>'Puede imprimir boletas de todas ls ventas',
         ]);
 
         //Empresa
         Permission::create([
             'name'=>'Ver datos de la empresa',
-            'slug'=>'bussines.index',
+            'slug'=>'business.index',
             'description'=>'Navega por los datos de la empresa',
         ]);
         Permission::create([
             'name'=>'Edicion de empresa',
-            'slug'=>'bussines.edit',
+            'slug'=>'business.edit',
             'description'=>'Editar cualquier dato de la empresa',
         ]);
 

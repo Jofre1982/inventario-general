@@ -18,8 +18,9 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description');
-            $table->string('logo');
+            $table->string('logo');        
             $table->string('mail');
+            $table->string('address');
             $table->string('nit');
 
             $table->timestamps();

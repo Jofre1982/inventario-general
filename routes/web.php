@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('sales/reports_day','App\Http\Controllers\ReportController@reports_day')->name('reports.day');
 Route::get('sales/reports_date','App\Http\Controllers\ReportController@reports_date')->name('reports.date');
 
-Route::post('sales/report_results','App\Http\Controllers\ReportController@report_results')->name('report.results');
+Route::post('sales/report_results','App\Http\Controllers\Report 	Controller@report_results')->name('report.results');
 
 Route::resource('categories','App\Http\Controllers\CategoryController');
 Route::resource('clients','App\Http\Controllers\ClientController');
