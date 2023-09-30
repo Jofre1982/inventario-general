@@ -15,9 +15,8 @@ class PrinterTableSeeder extends Seeder
      */
     public function run()
     {
-        Printer::table('users')->insert([
+        Printer::create([
             'name' => 'Admin Admin',
-           
         ]);
     }
 }
