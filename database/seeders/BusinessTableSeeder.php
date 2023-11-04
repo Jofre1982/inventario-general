@@ -16,30 +16,6 @@ class BusinessTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
-         //Esto está mal
-         Business::table('users')->insert([
-            'name' => 'Nombre de la empresa',
-            'description' => 'Descripcion corta dela empresa',
-            'logo'=> 'Logo.png',
-            'mail'=> 'Ejemplo@gmail.com',
-            'Address' => 'Barrio Primavera',
-            'nit' => '981123654-0',
-
-        ]);*/
-
-        //FORMA 1
-        DB::table('businesses')->insert([
-            'name' => 'Nombre de la empresa',
-            'description' => 'Descripcion corta dela empresa',
-            'logo'=> 'Logo.png',
-            'mail'=> 'Ejemplo@gmail.com',
-            'Address' => 'Barrio Primavera',
-            'nit' => '981123654-0',
-
-        ]);
-
-        //FORMA 2
         Business::create([
             'name' => 'Nombre de la empresa 2',
             'description' => 'Descripcion corta dela empresa2',

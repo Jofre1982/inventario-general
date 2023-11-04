@@ -10,7 +10,8 @@
         </div>
     </div>
 </section>
-{!! Form::open(['route'=>'report.results','method'=>'POST']) !!}
+
+
 <div class="row">
     <div class="col-12 col-md-3">
         <span>Fecha Inicial</span>
@@ -32,10 +33,11 @@
     <div class="col-12 col-md-3 text-center">
         <span>Fecha Final: <b> </b></span>
         <div class="form-group">
-            <strong>$ {{$total}}</strong>    
+            <strong>{{$total}}</strong>    
     </div>
 </div>
-{!! FORM::close() !!}
+
+
 <div class="content px-3">
     <div class="clearfix"></div>
     <div class="card">

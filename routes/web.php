@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('sales/reports_day','App\Http\Controllers\ReportController@reports_day')->name('reports.day');
 Route::get('sales/reports_date','App\Http\Controllers\ReportController@reports_date')->name('reports.date');
 
-Route::post('sales/report_results','App\Http\Controllers\Report 	Controller@report_results')->name('report.results');
+Route::post('sales/report_results','App\Http\Controllers\ReportController@report_results')->name('report.results');
 
 Route::resource('categories','App\Http\Controllers\CategoryController');
 Route::resource('clients','App\Http\Controllers\ClientController');
@@ -43,6 +43,8 @@ Route::get('change_status/products/{product}','App\Http\Controllers\ProductContr
 Route::get('change_status/purchases/{purchase}','App\Http\Controllers\PurchaseController@change_status')->name('change.status.purchase');
 Route::get('change_status/sales/{sale}','App\Http\Controllers\SaleController@change_status')->name('change.status.sale');
 
+Route::resource('users','App\Http\Controllers\UserController')->names('users');
+Route::resource('roles','App\Http\Controllers\RolController')->names('roles');
 
 Route::get('/users', function () {
     return view('users.index');

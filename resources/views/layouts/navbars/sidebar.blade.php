@@ -24,7 +24,30 @@
                         <li @if ($pageSlug=='profile' ) class="active " @endif>
                             <a href="{{ route('profile.edit')  }}">
                                 <i class="tim-icons icon-satisfied"></i>
-                                <p>{{ __('USUARIO') }}</p>
+                                <p>{{ __('PERFIL') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#administrar" aria-expanded="true">
+                    <i class="tim-icons icon-tap-02"></i>
+                    <span class="nav-link-text">{{ __('ADMINISTRAR') }}</span>
+                    <b class="caret mt-1"></b>
+                </a>
+                <div class="collapse" id="administrar">
+                    <ul class="nav pl-4">
+                        <li @if ($pageSlug=='dashboard' ) class="active " @endif>
+                            <a href="{{ route('home') }}">
+                                <i class="tim-icons icon-laptop"></i>
+                                <p>{{ __('USUARIOS') }}</p>
+                            </a>
+                        </li>
+                        <li @if ($pageSlug=='profile' ) class="active " @endif>
+                            <a href="{{ route('profile.edit')  }}">
+                                <i class="tim-icons icon-satisfied"></i>
+                                <p>{{ __('ROLES') }}</p>
                             </a>
                         </li>
                     </ul>

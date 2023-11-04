@@ -75,7 +75,7 @@
                             <div class="block block-three"></div>
                             <div class="block block-four"></div>
                             <a href="#">
-                                <img class="avatar" src="{{ asset('black') }}/img/emilyz.jpg" alt="">
+                                <img class="avatar" src="{{ asset('black') }}/img/jofre.png" alt="">
                                 <h5 class="title">{{ auth()->user()->name }}</h5>
                             </a>
                             <p class="description">
@@ -84,7 +84,7 @@
                         </div>
                     </p>
                     <div class="card-description">
-                        {{ __('Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...') }}
+                        {{ __('Ingeniero de Software, con experiencia...') }}
                     </div>
                 </div>
                 <div class="card-footer">

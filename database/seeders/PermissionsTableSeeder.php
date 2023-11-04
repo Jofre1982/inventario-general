@@ -15,6 +15,60 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
+        //Usuarios
+        Permission::create([
+            'name'=>'Navegar usuarios',
+            'slug'=>'users.index',
+            'description'=>'Lista y navega por todas los usuarios del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Ver detalle de usuario',
+            'slug'=>'users.show',
+            'description'=>'Ver detalle de cada usuario del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Edicion de usuarios',
+            'slug'=>'users.edit',
+            'description'=>'Editar cualquier dato de un usuario del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Creacion de usuarios',
+            'slug'=>'users.create',
+            'description'=>'Crea cualquier dato de un usuario del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Eliminar usuarios',
+            'slug'=>'users.destroy',
+            'description'=>'Eliminar cualquier dato de un usuario del sistema',
+        ]);
+
+        //Roles
+        Permission::create([
+            'name'=>'Navegar roles',
+            'slug'=>'roles.index',
+            'description'=>'Lista y navega por todas los roles del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Ver detalle de rol',
+            'slug'=>'roles.show',
+            'description'=>'Ver detalle de cada rol del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Edicion de roles',
+            'slug'=>'roles.edit',
+            'description'=>'Editar cualquier dato de un rol del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Creacion de roles',
+            'slug'=>'roles.create',
+            'description'=>'Crea cualquier dato de un rol del sistema',
+        ]);
+        Permission::create([
+            'name'=>'Eliminar roles',
+            'slug'=>'roles.destroy',
+            'description'=>'Eliminar cualquier dato de un rol del sistema',
+        ]);
+
         //Categorias
         Permission::create([
             'name'=>'Navegar categorias',
@@ -108,7 +162,7 @@ class PermissionsTableSeeder extends Seeder
         ]);
         Permission::create([
             'name'=>'Edicion de proveedores',
-            'slug'=>'products.edit',
+            'slug'=>'providers.edit',
             'description'=>'Editar cualquier dato de un proveedor del sistema',
         ]);
         Permission::create([
