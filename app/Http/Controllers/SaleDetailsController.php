@@ -66,7 +66,8 @@ class SaleDetailsController extends Controller
      *
      * @param  \App\Http\Requests\UpdatesaleDetailsRequest  $request
      * @param  \App\Models\saleDetails  $saleDetails
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate
+     * \Http\Response
      */
     public function update(UpdatesaleDetailsRequest $request, saleDetails $saleDetails)
     {
