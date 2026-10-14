@@ -19,15 +19,32 @@ if not exist "%PHP%" (
 )
 
 echo [1/6] Activando extensiones de PHP (intl, gd, zip, mbstring, fileinfo, pdo_mysql)...
-if not exist "%PHPINI%.respaldo" copy "%PHPINI%" "%PHPINI%.respaldo" >nul
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$f='%PHPINI%'; $c=Get-Content -LiteralPath $f; foreach($e in 'intl','gd','zip','mbstring','fileinfo','pdo_mysql','openssl'){ $c=$c -replace ('^\s*;\s*extension\s*=\s*(php_)?'+$e+'(\.dll)?\s*$'), ('extension='+$e) }; Set-Content -LiteralPath $f -Value $c"
+rem Se parte siempre del php.ini original (la copia se guarda la primera vez).
+if exist "%PHPINI%.respaldo" (
+    copy /y "%PHPINI%.respaldo" "%PHPINI%" >nul
+) else (
+    copy "%PHPINI%" "%PHPINI%.respaldo" >nul
+)
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$f='%PHPINI%'; $c=[Collections.Generic.List[string]][IO.File]::ReadAllLines($f); foreach($e in 'intl','gd','zip','mbstring','fileinfo','pdo_mysql'){ $p='(php_)?'+$e+'(\.dll)?\s*$'; if(@($c | Where-Object { $_ -match ('^\s*extension\s*=\s*'+$p) }).Count -gt 0){ continue }; $i=-1; for($j=0; $j -lt $c.Count; $j++){ if($c[$j] -match ('^\s*;+\s*extension\s*=\s*'+$p)){ $i=$j; break } }; if($i -ge 0){ $c[$i]='extension='+$e } else { $c.Add('extension='+$e) } }; [IO.File]::WriteAllLines($f, $c)"
 if errorlevel 1 (
-    echo [ERROR] No pude modificar %PHPINI%. Cierre XAMPP y ejecute este archivo con clic derecho - Ejecutar como administrador.
+    echo [ERROR] No pude modificar %PHPINI%.
+    echo Cierre el XAMPP Control Panel y ejecute este archivo con clic derecho - Ejecutar como administrador.
     goto fin
 )
-"%PHP%" -m | findstr /i /x "intl" >nul
+"%PHP%" -m 2>nul | findstr /i /x "intl" >nul
 if errorlevel 1 (
-    echo [ERROR] La extension intl sigue sin activarse. Revise %PHPINI%
+    echo.
+    echo [ERROR] La extension intl no carga. Este es el motivo que da PHP:
+    echo ------------------------------------------------------------
+    "%PHP%" -d display_startup_errors=1 -d error_reporting=-1 -r "echo extension_loaded('intl') ? 'intl OK' : 'intl NO cargada';"
+    echo.
+    echo extension_dir:
+    "%PHP%" -r "echo ini_get('extension_dir');"
+    echo.
+    if exist "C:\xampp\php\ext\php_intl.dll" (echo php_intl.dll: existe) else (echo php_intl.dll: NO EXISTE en C:\xampp\php\ext)
+    dir /b "C:\xampp\php\icu*.dll" 2>nul || echo Archivos icu*.dll: NO EXISTEN en C:\xampp\php
+    echo ------------------------------------------------------------
+    echo Copie todo este texto y envielo.
     goto fin
 )
 echo     Listo. Se guardo una copia en php.ini.respaldo
