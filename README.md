@@ -19,7 +19,13 @@ Sistema de inventario, compras y ventas para negocios desde una tienda de barrio
 - Composer
 - MySQL / MariaDB (por ejemplo con XAMPP o Laragon)
 
-## Instalación
+## Instalación fácil en Windows (con XAMPP)
+
+1. Instale XAMPP en `C:\xampp` y encienda **MySQL** en el XAMPP Control Panel.
+2. Haga doble clic en **`instalar.bat`** (solo la primera vez).
+3. Para usar el sistema cada día: encienda MySQL y haga doble clic en **`iniciar.bat`**.
+
+## Instalación manual
 
 ```bash
 git clone https://github.com/Jofre1982/inventario-general.git
