@@ -52,8 +52,8 @@ return [
         | permissions to roles and users, and assigning roles to users.
         */
 
-        'role' => Fxneiram\Shinobi\Models\Role::class,
-        'permission' => Fxneiram\Shinobi\Models\Permission::class,
+        'role' => App\Models\Role::class,
+        'permission' => App\Models\Permission::class,
 
     ],
 

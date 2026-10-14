@@ -3,124 +3,93 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Sale\StoreRequest;
-use App\Http\Requests\Sale\UpdateRequest;
+use App\Models\Business;
 use App\Models\Client;
-use App\Models\Product;
 use App\Models\Sale;
+use App\Services\InventoryService;
+use App\Services\TicketPrinter;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Mike42\Escpos\EscposImage;
-use Mike42\Escpos\PrintConnectors\FilePrintConnector;
-use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-use Mike42\Escpos\Printer;
+use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
-    public function index()
+    public function __construct(private InventoryService $inventory)
     {
-        $sales = Sale::get();
+        $this->protectWithPermissions('sales', [
+            'sales.pdf' => 'pdf',
+            'sales.print' => 'print',
+            'change.status.sales' => 'change_status',
+        ]);
+    }
+
+    public function index(Request $request)
+    {
+        $sales = Sale::with(['client', 'user'])
+            ->when($request->q, fn ($q, $term) => $q->where(fn ($w) => $w
+                ->where('id', $term)
+                ->orWhereHas('client', fn ($c) => $c->where('name', 'like', "%{$term}%")->orWhere('document', $term))))
+            ->latest('sale_date')
+            ->latest('id')
+            ->paginate(25)
+            ->withQueryString();
+
         return view('sale.index', compact('sales'));
     }
 
-
     public function create()
     {
-        $clients = Client::get();
-        $products = Product::get();
-        return view('sale.create', compact('clients', 'products'));
-    }
+        $clients = Client::orderBy('name')->get();
 
+        return view('sale.create', compact('clients'));
+    }
 
     public function store(StoreRequest $request)
     {
-        $sale = Sale::create($request->all() + [
-            'user_id' => Auth::user()->id,
-            'sale_date' => Carbon::now('America/Bogota'),
-        ]);
+        $sale = $this->inventory->registerSale(
+            (int) $request->client_id,
+            $request->user()->id,
+            (float) ($request->tax ?? 0),
+            $request->items()
+        );
 
-
-        foreach ($request->product_id as $key => $product) {
-            $results[] = ["product_id" => $request->product_id[$key], "quantity" => $request->quantity[$key], "price" => $request->price[$key], "discount" => $request->discount[$key]];
-        }
-
-        $sale->saleDetails()->createMany($results);
-        return redirect()->route('sales.index');
-
+        return redirect()->route('sales.show', $sale)->with('success', "Venta #{$sale->id} registrada.");
     }
 
     public function show(Sale $sale)
     {
-        $subtotal = 0;
-        $saleDetails = $sale->saleDetails;
-        foreach ($saleDetails as $saleDetail) {
-            $subtotal += $saleDetail->quantity * $saleDetail->price - $saleDetail->quantity * $saleDetail->sale;
-        }
-        return view('sale.show', compact('sale', 'saleDetails', 'subtotal'));
-    }
+        $sale->load(['client', 'user', 'saleDetails.product']);
 
-    public function edit(Sale $sale)
-    {
-        $clinets = Client::get();
         return view('sale.show', compact('sale'));
-    }
-
-
-    public function update(UpdateRequest $request, Sale $sale)
-    {
-        $sale->update($request->all());
-        return redirect()->route('sales.index');
-    }
-
-
-    public function destroy(Sale $sale)
-    {
-        $sale->delete();
-        return redirect()->route('sales.index');
-
     }
 
     public function pdf(Sale $sale)
     {
-        $subtotal = 0;
-        $saleDetails = $sale->saleDetails;
-        foreach ($saleDetails as $saleDetail) {
-            $subtotal += $saleDetail->quantity * $saleDetail->price - $saleDetail->quantity * $saleDetail->sale;
-        }
-        $pdf = PDF::loadview('sale.pdf', compact('sale', 'subtotal', 'saleDetails'));
-        return $pdf->download('Reporte_de_venta_' . $sale->id . '.pdf');
+        $sale->load(['client', 'user', 'saleDetails.product']);
+        $business = Business::current();
+
+        return Pdf::loadView('sale.pdf', compact('sale', 'business'))
+            ->download('Venta_' . $sale->id . '.pdf');
     }
 
-    public function print(Sale $sale)
+    public function print(Sale $sale, TicketPrinter $printer)
     {
         try {
-            $subtotal = 0;
-            $saleDetails = $sale->saleDetails;
-            foreach ($saleDetails as $saleDetail) {
-                $subtotal += $saleDetail->quantity * $saleDetail->price - $saleDetail->quantity * $saleDetail->sale;
-            }
-            $printer_name = "TM20";
-            $connector = new WindowsPrintConnector($printer_name); 
-            $printer =  new Printer($connector);
+            $printer->printSale($sale);
+        } catch (\Throwable $e) {
+            report($e);
 
-            $printer->text("COP 100");
-            $printer->cut();
-            $printer->close();
-
-            return redirect()->back();
-
-        } catch (\Throwable $th) {
-            return redirect()->back();
+            return back()->with('error', 'No se pudo imprimir el ticket: ' . $e->getMessage() . ' Revise la configuración de la impresora.');
         }
+
+        return back()->with('success', 'Ticket enviado a la impresora.');
     }
+
     public function change_status(Sale $sale)
     {
-        if ($sale->status == 'VALID') {
-            $sale->update(['status'=>'CANCELED']);
-            return redirect()->back();
-        } else {
-            $sale->update(['status'=>'VALID']);
-            return redirect()->back();
-        }
+        $sale = $this->inventory->toggleSale($sale);
+
+        return back()->with('success', $sale->isValid()
+            ? "Venta #{$sale->id} reactivada; se descontó el stock."
+            : "Venta #{$sale->id} anulada; el stock fue devuelto.");
     }
 }

@@ -1,0 +1,29 @@
+/* Ajustes propios sobre Black Dashboard */
+select.form-control,
+select.form-control option { background-color: #27293d; color: #fff; }
+.white-content select.form-control,
+.white-content select.form-control option { background-color: #fff; color: #222a42; }
+
+.page-header h2 { font-weight: 600; }
+.search-form .form-control { min-width: 260px; }
+.table td, .table th { vertical-align: middle; }
+.table .text-right { white-space: nowrap; }
+.btn-icon.btn-sm { padding: 0 .4rem; }
+
+.kpi { min-height: 120px; }
+.kpi .kpi-value { font-size: 1.6rem; font-weight: 600; margin: 0; }
+.kpi .kpi-label { text-transform: uppercase; font-size: .75rem; letter-spacing: .04em; opacity: .7; }
+
+/* Pantalla de venta / compra */
+.scan-box { font-size: 1.25rem; height: auto; padding: .7rem 1rem; }
+.scan-results { position: absolute; z-index: 20; left: 15px; right: 15px; max-height: 300px; overflow-y: auto; }
+.scan-results .list-group-item { cursor: pointer; background: #27293d; color: #fff !important; border-color: #344675; }
+.scan-results .list-group-item small { color: rgba(255,255,255,.75); }
+.scan-results .list-group-item.active, .scan-results .list-group-item:hover { background: #e14eca; }
+.white-content .scan-results .list-group-item { background: #fff; color: #222a42 !important; }
+.white-content .scan-results .list-group-item.active { color: #fff !important; }
+.white-content .scan-results .list-group-item small { color: inherit; }
+.line-items input.form-control { min-width: 80px; }
+.totals-box .total-final { font-size: 2rem; font-weight: 700; }
+.product-thumb { width: 160px; height: 160px; object-fit: cover; border-radius: 6px; }
+.logo-preview { max-height: 90px; }

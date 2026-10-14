@@ -1,21 +1,18 @@
-@extends('layouts.app', ['page' => __('Categorias'), 'pageSlug' => 'Registercategories'])
-
+@extends('layouts.app', ['page' => 'Categorías', 'pageSlug' => 'categories'])
+@php($category = new \App\Models\Category())
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Crear categorias</h1>
-            </div>
-        </div>
+@include('partials.page-header', ['title' => 'Nueva categoría'])
+<div class="card">
+    <form method="POST" action="{{ route('categories.store') }}">
+    @csrf
+
+    <div class="card-body">
+        @include('category._form')
     </div>
-</section>
-
-    {!! Form::open(['route'=>'categories.store','method'=>'POST']) !!}
-
-    @include('category._form')
-        <button type="submit" class="btn btn-primary mr-2">Registrar</button>
-        <a href="{{ route('categories.index') }}" class="btn btn -ligth">Cancelar</a>
-    {!! Form::close() !!}
-
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+        <a href="{{ route('categories.index') }}" class="btn btn-default">Cancelar</a>
+    </div>
+    </form>
+</div>
 @endsection

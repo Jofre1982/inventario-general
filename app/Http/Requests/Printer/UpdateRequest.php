@@ -3,28 +3,28 @@
 namespace App\Http\Requests\Printer;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
-            //
+            'name' => ['required_unless:connector,network', 'nullable', 'string', 'max:255'],
+            'connector' => ['required', Rule::in(array_keys(\App\Models\Printer::CONNECTORS))],
+            'host' => ['required_if:connector,network', 'nullable', 'string', 'max:255'],
+            'port' => ['nullable', 'integer', 'min:1', 'max:65535'],
+            'width' => ['required', 'integer', 'min:24', 'max:64'],
         ];
+    }
+
+    public function attributes()
+    {
+        return ['name' => 'nombre de la impresora', 'connector' => 'tipo de conexión', 'host' => 'IP', 'port' => 'puerto', 'width' => 'caracteres por línea'];
     }
 }

@@ -2,18 +2,16 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 
 class ClientSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    /** Cliente genérico para ventas de mostrador. */
     public function run()
     {
-        //
+        Client::firstOrCreate(['document' => '222222222222'], [
+            'name' => 'CONSUMIDOR FINAL',
+        ]);
     }
 }

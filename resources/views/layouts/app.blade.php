@@ -7,7 +7,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Black Dashboard') }}</title>
+        <title>@isset($page){{ $page }} · @endisset{{ config('app.name', 'Inventario General') }}</title>
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('black') }}/img/apple-icon.png">
         <link rel="icon" type="image/png" href="{{ asset('black') }}/img/favicon.png">
@@ -19,6 +19,8 @@
         <!-- CSS -->
         <link href="{{ asset('black') }}/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
         <link href="{{ asset('black') }}/css/theme.css" rel="stylesheet" />
+        <link href="{{ asset('css/inventario.css') }}" rel="stylesheet" />
+        @stack('css')
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -28,6 +30,7 @@
                     @include('layouts.navbars.navbar')
 
                     <div class="content">
+                        @include('partials.flash')
                         @yield('content')
                     </div>
 
@@ -87,7 +90,8 @@
 
         <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
         <script src="{{ asset('black') }}/js/theme.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ asset('js/inventario.js') }}"></script>
 
         <script>
             $(document).ready(function() {

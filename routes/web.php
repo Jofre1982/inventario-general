@@ -1,79 +1,71 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PrinterController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Rutas web
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+| El registro público está desactivado: los usuarios los crea un
+| administrador desde "Administrar > Usuarios".
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes(['register' => false]);
+
+Route::redirect('/', '/home');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // Perfil del usuario conectado
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+
+    // Administración
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
+    Route::get('business', [BusinessController::class, 'index'])->name('business.index');
+    Route::put('business', [BusinessController::class, 'update'])->name('business.update');
+    Route::get('printer', [PrinterController::class, 'index'])->name('printer.index');
+    Route::put('printer', [PrinterController::class, 'update'])->name('printer.update');
+    Route::post('printer/test', [PrinterController::class, 'test'])->name('printer.test');
+
+    // Catálogos
+    Route::resource('categories', CategoryController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('providers', ProviderController::class);
+    Route::get('products/lookup', [ProductController::class, 'lookup'])->name('products.lookup');
+    Route::resource('products', ProductController::class);
+    Route::patch('change_status/products/{product}', [ProductController::class, 'change_status'])->name('change.status.products');
+
+    // Compras
+    Route::resource('purchases', PurchaseController::class)->only(['index', 'create', 'store', 'show']);
+    Route::get('purchases/pdf/{purchase}', [PurchaseController::class, 'pdf'])->name('purchases.pdf');
+    Route::post('purchases/upload/{purchase}', [PurchaseController::class, 'upload'])->name('upload.purchases');
+    Route::patch('change_status/purchases/{purchase}', [PurchaseController::class, 'change_status'])->name('change.status.purchases');
+
+    // Ventas
+    Route::resource('sales', SaleController::class)->only(['index', 'create', 'store', 'show']);
+    Route::get('sales/pdf/{sale}', [SaleController::class, 'pdf'])->name('sales.pdf');
+    Route::post('sales/print/{sale}', [SaleController::class, 'print'])->name('sales.print');
+    Route::patch('change_status/sales/{sale}', [SaleController::class, 'change_status'])->name('change.status.sales');
+
+    // Reportes
+    Route::get('reports/day', [ReportController::class, 'reports_day'])->name('reports.day');
+    Route::get('reports/date', [ReportController::class, 'reports_date'])->name('reports.date');
 });
-
-Route::get('sales/reports_day','App\Http\Controllers\ReportController@reports_day')->name('reports.day');
-Route::get('sales/reports_date','App\Http\Controllers\ReportController@reports_date')->name('reports.date');
-
-Route::post('sales/report_results','App\Http\Controllers\ReportController@report_results')->name('report.results');
-
-Route::resource('categories','App\Http\Controllers\CategoryController');
-Route::resource('clients','App\Http\Controllers\ClientController');
-Route::resource('products','App\Http\Controllers\ProductController');
-Route::resource('providers','App\Http\Controllers\ProviderController');
-Route::resource('purchases','App\Http\Controllers\PurchaseController')->except(['edit','update','destroy']);
-Route::resource('sales','App\Http\Controllers\SaleController')->except(['edit','update','destroy']);
-
-Route::get('purchases/pdf/{purchase}','App\Http\Controllers\PurchaseController@pdf')->name('purchases.pdf');
-Route::get('sales/pdf/{sale}','App\Http\Controllers\SaleController@pdf')->name('sales.pdf');
-Route::get('sales/print/{sale}','App\Http\Controllers\SaleController@print')->name('sales.print');
-
-Route::resource('business','BusinessController')->only(['index','update']);
-Route::resource('printer','PrinterController')->only(['index','update']);
-
-Route::get('purchases/upload/{purchase}','App\Http\Controllers\SaleController@upload')->name('upload.purchases');
-
-Route::get('change_status/products/{product}','App\Http\Controllers\ProductController@change_status')->name('change.status.product');
-Route::get('change_status/purchases/{purchase}','App\Http\Controllers\PurchaseController@change_status')->name('change.status.purchase');
-Route::get('change_status/sales/{sale}','App\Http\Controllers\SaleController@change_status')->name('change.status.sale');
-
-Route::resource('users','App\Http\Controllers\UserController')->names('users');
-Route::resource('roles','App\Http\Controllers\RolController')->names('roles');
-
-Route::get('/users', function () {
-    return view('users.index');
-
-	
-
-});
-
-
-Auth::routes();
-
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
-
-
-Route::group(['middleware' => 'auth'], function () {
-		Route::get('icons', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
-		
-		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
-		Route::get('rtl', ['as' => 'pages.rtl', 'uses' => 'App\Http\Controllers\PageController@rtl']);
-		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
-		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
-		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
-});
-
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-});
-

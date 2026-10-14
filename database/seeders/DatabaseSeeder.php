@@ -1,22 +1,26 @@
 <?php
+
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Datos mínimos para empezar. Se puede ejecutar varias veces:
+     *   php artisan db:seed
      *
-     * @return void
+     * Para cargar productos, ventas y compras de ejemplo:
+     *   php artisan db:seed --class=DemoSeeder
      */
     public function run()
     {
-        $this->call([UsersTableSeeder::class]);
-        $this->call([BusinessTableSeeder::class]);
-        $this->call([PrinterTableSeeder::class]);
-        $this->call([PermissionsTableSeeder::class]);
-
+        $this->call([
+            PermissionsTableSeeder::class, // crea también los roles Admin y Cajero
+            UsersTableSeeder::class,
+            BusinessTableSeeder::class,
+            PrinterTableSeeder::class,
+            ClientSeeder::class,
+        ]);
     }
 }

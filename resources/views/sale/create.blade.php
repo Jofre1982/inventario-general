@@ -1,119 +1,87 @@
-@extends('layouts.app', ['page' => __('Ventas'), 'pageSlug' => 'Registersale'])
+@extends('layouts.app', ['page' => 'Nueva venta', 'pageSlug' => 'sales_create'])
 
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Crear Ventas</h1>
+@include('partials.page-header', ['title' => 'Nueva venta'])
+<form method="POST" action="{{ route('sales.store') }}" id="sale-form" autocomplete="off">
+@csrf
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group position-relative mb-0">
+                    <label for="scan">Producto <small class="text-muted">— escanee el código de barras o escriba el nombre y presione Enter</small></label>
+                    <input type="text" id="scan" class="form-control scan-box" placeholder="Código de barras o nombre..." autofocus>
+                    <div id="scan-results" class="list-group scan-results" style="display:none"></div>
+                </div>
             </div>
         </div>
-
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table line-items">
+                        <thead><tr><th>Producto</th><th style="width:110px">Cant.</th><th class="text-right">Precio</th><th style="width:110px">Desc. %</th><th class="text-right">Subtotal</th><th></th></tr></thead>
+                        <tbody id="lines"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+    <div class="col-lg-4">
+        <div class="card totals-box">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="client_id">Cliente *</label>
+                    <select class="form-control" name="client_id" id="client_id" required>
+                        @foreach ($clients as $client)
+                            <option value="{{ $client->id }}" @selected(old('client_id', $clients->firstWhere('document', '222222222222')->id ?? null) == $client->id)>{{ $client->name }} — {{ $client->document }}</option>
+                        @endforeach
+                    </select>
+                    @can('clients.create')
+                        <small><a href="{{ route('clients.create') }}" target="_blank">+ Registrar cliente nuevo</a></small>
+                    @endcan
+                </div>
+                <div class="form-group">
+                    <label for="tax">Impuesto (%)</label>
+                    <input type="number" class="form-control" name="tax" id="tax" value="{{ old('tax', 0) }}" min="0" max="100" step="0.01">
+                    <small class="text-muted">Deje 0 si los precios ya incluyen IVA.</small>
+                </div>
+                <hr>
+                <p class="d-flex justify-content-between mb-1"><span>Subtotal</span><span id="t-subtotal">$ 0</span></p>
+                <p class="d-flex justify-content-between mb-1"><span>Impuesto</span><span id="t-tax">$ 0</span></p>
+                <p class="d-flex justify-content-between align-items-center mb-3"><span>TOTAL</span><span id="t-total" class="total-final">$ 0</span></p>
 
+                <div class="form-group">
+                    <label for="cash">Paga con (opcional)</label>
+                    <input type="number" class="form-control" id="cash" min="0" step="any" placeholder="Para calcular el cambio">
+                    <p class="mt-2 mb-0">Cambio: <b id="change">$ 0</b></p>
+                </div>
 
-{!! Form::open(['route'=>'sales.store','method'=>'POST']) !!}
-
-@include('sale._form')
-
-
-
-<a href="{{ route('sales.index') }}" class="btn btn -ligth">Cancelar</a>
-<button type="submit" id="guardar" class="btn btn-primary mr-2">Registrar</button>
-
-{!! Form::close() !!}
+                <button type="submit" id="save" class="btn btn-primary btn-block btn-lg" disabled>Registrar venta</button>
+                <a href="{{ route('sales.index') }}" class="btn btn-default btn-block">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 @endsection
 
 @push('js')
 <script>
-    $(document).ready(function() {
-        $("#agregar").click(function() {
-            agregar();
+    $(function () {
+        var editor = new Inventario.LineEditor({
+            mode: 'sale',
+            lookupUrl: @json(route('products.lookup')),
+            scan: '#scan', results: '#scan-results', body: '#lines', tax: '#tax', submit: '#save',
+            subtotal: '#t-subtotal', taxAmount: '#t-tax', total: '#t-total'
         });
+
+        function updateChange() {
+            var total = Number($('#t-total').text().replace(/[^\d,]/g, '').replace(',', '.')) || 0;
+            var cash = parseFloat($('#cash').val()) || 0;
+            $('#change').text(Inventario.money(cash > total ? cash - total : 0));
+        }
+        $('#cash').on('input', updateChange);
+        $('#lines, #tax').on('input change click', function () { setTimeout(updateChange); });
     });
-    var cont = 1;
-    total = 0;
-    subtotal = [];
-
-    $("#guardar").hide();
-    $("#product_id").change(mostrarValores);
-
-    function mostrarValores(){
-        datosProducto = document.getElementById('product_id').value.split('_');
-        $("#price").val(datosProducto[2]);
-        $("#stock").val(datosProducto[1]);
-    }
-
-    function agregar() {
-        datosProducto = document.getElementById('product_id').value.split('_');
-
-        product_id = datosProducto[0];
-        producto = $("#product_id option:selected").text();
-        quantity = $("#quantity").val();
-        discount = $("#discount").val();
-        price = $("#price").val();
-        stock = $("#stock").val();
-        impuesto = $("#tax").val();
-
-        if (product_id != "" && quantity != "" && quantity > 0 && discount != "" && price != "") {
-            if (parseInt(stock) >= parseInt(quantity)) {
-                subtotal[cont] = (quantity * price) - (quantity * price * discount / 100);
-                total = total + subtotal[cont];
-                var fila = '<tr class="selected" id="fila' + cont + '"><td><button type="button" class="btn btn-danger btn-sm"  onclick="eliminar(' + cont + ');"><i class="fa fa-times"></button></td><td><input type="hidden" name="product_id[]" value="' + product_id + '">' + producto + '</td><td><input type="hidden" id="price[]" name="price[]" value="' + parseFloat(price).toFixed(2) + '"> <input class="form-control" type="number" id="price[]" value="' + parseFloat(price).toFixed(2) + '" disabled> </td><td><input type="hidden" name="discount[]" value="' + parseFloat(discount) + '" disabled> <input class="form-control" type="number" value="' + parseFloat(discount) + '" disabled> </td><td><input type="hidden" name="quantity[]" value="' + quantity + '"> <input class="form-control" type="number" value="' + quantity + '" disabled> </td><td aling="right">s/' +  parseFloat(subtotal[cont]).toFixed(2) + ' </td></tr>';
-                cont++;
-                limpiar();
-                totales();
-                evaluar();
-                $('#detalles').append(fila);
-            } else {
-                Swal.fire({
-                    type: 'error',
-                    text: 'La cantidad a vender supera la del stock',
-                })
-            }
-        } else {
-            Swal.fire({
-                type: 'error',
-                text: 'Rellene todos los campos del detalle de la venta',
-            })
-        }
-
-        function limpiar() {
-            $('#quantity').val("");
-            $('#discount').val("0");
-            $('#price').val("");
-        }
-
-        function totales() {
-            $('#total').html("PEN" + total.toFixed(2));
-            total_impuesto = total * impuesto / 100;
-            total_pagar = total + total_impuesto;
-            $("#total_impuesto").html("PEN" + total_impuesto.toFixed(2));
-            $("#total_pagar_html").html("PEN" + total_pagar.toFixed(2));
-            $("#total_pagar").val(total_pagar.toFixed(2));
-
-        }
-
-        function evaluar() {
-            if (total > 0) {
-                $("#guardar").show();
-            } else {
-                $("#guardar").hide();
-            }
-        }
-
-        function eliminar(index) {
-            total = total - subtotal[index];
-            total_impuesto = total * impuesto / 100;
-            total_pagar_html = total + total_impuesto;
-            $("#total").html("PEN" + total);
-            $("#total_impuesto").html("PEN" + total_impuesto);
-            $("#total_pagar_html").html("PEN" + total_pagar_html);
-            $("#total_pagar").val(total_pagar_html.toFixed(2));
-            $("#fila" + index).remove();
-            evaluar();
-        }
-    }
 </script>
 @endpush

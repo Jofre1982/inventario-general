@@ -7,17 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
- 
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'email',
         'nit',
         'adress',
         'phone',
-        
     ];
 
-    public function products(){
+    public function products()
+    {
         return $this->hasMany(Product::class);
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
     }
 }

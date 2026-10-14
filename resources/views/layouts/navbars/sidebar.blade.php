@@ -1,156 +1,70 @@
+@php
+    $menu = [
+        'principal' => ['PRINCIPAL', 'icon-tap-02', [
+            ['dashboard', 'home', 'INICIO', 'icon-laptop', null],
+            ['profile', 'profile.edit', 'PERFIL', 'icon-satisfied', null],
+        ]],
+        'transacciones' => ['TRANSACCIONES', 'icon-coins', [
+            ['sales_create', 'sales.create', 'NUEVA VENTA', 'icon-cart', 'sales.create'],
+            ['sales', 'sales.index', 'VENTAS', 'icon-money-coins', 'sales.index'],
+            ['purchases', 'purchases.index', 'COMPRAS', 'icon-delivery-fast', 'purchases.index'],
+        ]],
+        'elementos' => ['INVENTARIO', 'icon-bullet-list-67', [
+            ['products', 'products.index', 'PRODUCTOS', 'icon-paper', 'products.index'],
+            ['categories', 'categories.index', 'CATEGORÍAS', 'icon-single-copy-04', 'categories.index'],
+        ]],
+        'personas' => ['PERSONAS', 'icon-single-02', [
+            ['clients', 'clients.index', 'CLIENTES', 'icon-user-run', 'clients.index'],
+            ['providers', 'providers.index', 'PROVEEDORES', 'icon-bus-front-12', 'providers.index'],
+        ]],
+        'reportes' => ['REPORTES', 'icon-chart-bar-32', [
+            ['reports_day', 'reports.day', 'DEL DÍA', 'icon-chart-pie-36', 'reports.day'],
+            ['reports_date', 'reports.date', 'POR FECHAS', 'icon-notes', 'reports.date'],
+        ]],
+        'administrar' => ['ADMINISTRAR', 'icon-settings-gear-63', [
+            ['users', 'users.index', 'USUARIOS', 'icon-badge', 'users.index'],
+            ['roles', 'roles.index', 'ROLES', 'icon-key-25', 'roles.index'],
+            ['business', 'business.index', 'EMPRESA', 'icon-bank', 'business.index'],
+            ['printer', 'printer.index', 'IMPRESORA', 'icon-paper', 'printer.index'],
+        ]],
+    ];
+    $user = auth()->user();
+    $current = $pageSlug ?? '';
+@endphp
 <div class="sidebar">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text logo-normal">
-            <i class="tim-icons icon-align-left-2"></i>
-                {{ __('MENU ') }}</a>
+            <a href="{{ route('home') }}" class="simple-text logo-normal">
+                <i class="tim-icons icon-align-left-2"></i>
+                {{ \Illuminate\Support\Str::limit(\App\Models\Business::current()->name, 22) }}
+            </a>
         </div>
 
         <ul class="nav">
-            <li>
-                <a data-toggle="collapse" href="#principal" aria-expanded="true">
-                    <i class="tim-icons icon-tap-02"></i>
-                    <span class="nav-link-text">{{ __('PRINCIPAL') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse" id="principal">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug=='dashboard' ) class="active " @endif>
-                            <a href="{{ route('home') }}">
-                                <i class="tim-icons icon-laptop"></i>
-                                <p>{{ __('INICIO') }}</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug=='profile' ) class="active " @endif>
-                            <a href="{{ route('profile.edit')  }}">
-                                <i class="tim-icons icon-satisfied"></i>
-                                <p>{{ __('PERFIL') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#administrar" aria-expanded="true">
-                    <i class="tim-icons icon-tap-02"></i>
-                    <span class="nav-link-text">{{ __('ADMINISTRAR') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse" id="administrar">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug=='dashboard' ) class="active " @endif>
-                            <a href="{{ route('home') }}">
-                                <i class="tim-icons icon-laptop"></i>
-                                <p>{{ __('USUARIOS') }}</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug=='profile' ) class="active " @endif>
-                            <a href="{{ route('profile.edit')  }}">
-                                <i class="tim-icons icon-satisfied"></i>
-                                <p>{{ __('ROLES') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li>
-                <a data-toggle="collapse" href="#personas" aria-expanded="true">
-                    <i class="tim-icons icon-single-02"></i>
-                    <span class="nav-link-text">{{ __('PERSONAS') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse" id="personas">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug=='clients' ) class="active " @endif>
-                            <a href="{{ route('clients.index')  }}">
-                                <i class="tim-icons icon-user-run"></i>
-                                <p>{{ __('CLIENTES') }}</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug=='providers' ) class="active " @endif>
-                            <a href="{{ route('providers.index')  }}">
-                                <i class="tim-icons icon-bus-front-12"></i>
-                                <p>{{ __('PROVEEDORES') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li>
-                <a data-toggle="collapse" href="#elementos"aria-expanded="true">
-                    <i class="tim-icons icon-bullet-list-67"></i>
-                    <span class="nav-link-text">{{ __('ELEMENTOS') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse" id="elementos">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug=='categories' ) class="active " @endif>
-                            <a href="{{ route('categories.index')  }}">
-                                <i class="tim-icons icon-single-copy-04"></i>
-                                <p>{{ __('CATEGORIAS') }}</p>
-                            </a>
-                        </li>
-
-                        <li @if ($pageSlug=='products' ) class="active " @endif>
-                            <a href="{{ route('products.index')  }}">
-                                <i class="tim-icons icon-paper"></i>
-                                <p>{{ __('PRODUCTOS') }}</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li>
-                <a data-toggle="collapse" href="#transacciones" aria-expanded="true">
-                    <i class="tim-icons icon-coins"></i>
-                    <span class="nav-link-text">{{ __('TRANSACCIONES') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse" id="transacciones">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug=='purchases' ) class="active " @endif>
-                            <a href="{{ route('purchases.index')  }}">
-                                <i class="tim-icons icon-cart"></i>
-                                <p>{{ __('COMPRAS') }}</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug=='sales' ) class="active " @endif>
-                            <a href="{{ route('sales.index')  }}">
-                                <i class="tim-icons icon-money-coins"></i>
-                                <p>{{ __('VENTAS') }}</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#reportes" aria-expanded="true">
-                    <i class="tim-icons icon-chart-bar-32"></i>
-                    <span class="nav-link-text">{{ __('REPORTES') }}</span>
-                    <b class="caret mt-1"></b>
-                </a>
-                <div class="collapse" id="reportes">
-                    <ul class="nav pl-4">
-                        <li @if ($pageSlug=='reports_day' ) class="active " @endif>
-                            <a href="{{ route('reports.day') }}">
-                                <i class="tim-icons icon-chart-pie-36"></i>
-                                <p>{{ __('DIARIO') }}</p>
-                            </a>
-                        </li>
-                        <li @if ($pageSlug=='reports_date' ) class="active " @endif>
-                            <a href="{{ route('reports.date') }}">
-                                <i class="tim-icons icon-notes"></i>
-                                <p>{{ __('DATOS') }}</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
+            @foreach ($menu as $id => [$title, $icon, $items])
+                @php($visible = array_filter($items, fn ($i) => $i[4] === null || $user->can($i[4])))
+                @continue(empty($visible))
+                @php($open = collect($visible)->contains(fn ($i) => $i[0] === $current))
+                <li>
+                    <a data-toggle="collapse" href="#menu-{{ $id }}" aria-expanded="{{ $open ? 'true' : 'false' }}">
+                        <i class="tim-icons {{ $icon }}"></i>
+                        <span class="nav-link-text">{{ $title }}</span>
+                        <b class="caret mt-1"></b>
+                    </a>
+                    <div class="collapse {{ $open ? 'show' : '' }}" id="menu-{{ $id }}">
+                        <ul class="nav pl-4">
+                            @foreach ($visible as [$slug, $route, $label, $itemIcon])
+                                <li @if ($current === $slug) class="active" @endif>
+                                    <a href="{{ route($route) }}">
+                                        <i class="tim-icons {{ $itemIcon }}"></i>
+                                        <p>{{ $label }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+            @endforeach
         </ul>
     </div>
 </div>

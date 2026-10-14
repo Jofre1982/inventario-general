@@ -1,80 +1,60 @@
-@extends('layouts.app', ['page' => __('Productos'), 'pageSlug' => 'products'])
+@extends('layouts.app', ['page' => 'Productos', 'pageSlug' => 'products'])
 
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Lista de Productos</h1>
-            </div>
-            <div class="col-sm-6">
-                <a class="btn btn-primary float-right" href="{{ route('products.create') }}">
-                    Nuevo
-                </a>
+@include('partials.page-header', ['title' => 'Productos', 'action' => route('products.create'), 'can' => 'products.create'])
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-between align-items-start">
+            @include('partials.search', ['placeholder' => 'Nombre o código de barras'])
+            <div class="mb-3">
+                @if (request()->boolean('low'))
+                    <a href="{{ route('products.index', request()->except(['low', 'page'])) }}" class="btn btn-sm btn-warning">Mostrando stock bajo · ver todos</a>
+                @else
+                    <a href="{{ route('products.index', request()->except('page') + ['low' => 1]) }}" class="btn btn-sm btn-default">Solo stock bajo</a>
+                @endif
+                @if (request('category'))
+                    <a href="{{ route('products.index', request()->except(['category', 'page'])) }}" class="btn btn-sm btn-info">Quitar filtro de categoría</a>
+                @endif
             </div>
         </div>
-    </div>
-</section>
-<div class="content px-3">
-    <div class="clearfix"></div>
-    <div class="card">
-        <div class="card-body p-0">
-            <div id="dataTableBuilder_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-export btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button" aria-haspopup="true" aria-expanded="false"><span><i class="fa fa-download"></i> Exportar&nbsp;<span class="caret"></span></span></button></div> <button class="btn btn-secondary buttons-print btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-print"></i> Imprimir</span></button> <button class="btn btn-secondary buttons-reset btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-undo"></i> Reset</span></button> <button class="btn btn-secondary buttons-reload btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-refresh"></i> Actualizar</span></button>
-            </div>
-            <div id="dataTableBuilder_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTableBuilder"></label></div>
-            <div id="dataTableBuilder_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
-            <table class="table table-striped table-bordered dataTable no-footer" id="dataTableBuilder" width="100%" role="grid" aria-describedby="dataTableBuilder_info" style="width: 100%;">
-                <thead>
-                    <tr role="row">
-                        <th title="Id" class="sorting" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-label="Cantidad: activate to sort column ascending" style="width: 83px;">ID</th>
-                        <th title="Nombre" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Nombre: activate to sort column ascending" style="width: 316px;">NOMBRE</th>
-                        <th title="Stock" class="sorting" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-label="Cantidad: activate to sort column ascending" style="width: 83px;">STOCK</th>
-                        <th title="Estado" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">ESTADO</th>
-                        <th title="Categoria" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">CATEGORIA</th>
-                        <th title="Acciones" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">ACCIONES</th>
-                    </tr>
-                </thead>
+        <div class="table-responsive">
+            <table class="table">
+                <thead><tr><th>Código</th><th>Nombre</th><th>Categoría</th><th class="text-right">Precio</th><th class="text-right">Stock</th><th>Estado</th><th class="text-right">Acciones</th></tr></thead>
                 <tbody>
-                    @foreach($products as $product)
+                @forelse ($products as $product)
                     <tr>
-                        <th scope="row">{{$product->id}}</th>
-                        <td>
-                            <a href="{{route('products.show',$product   )}}">{{$product->name}}</a>
+                        <td><small>{{ $product->code }}</small></td>
+                        <td>@can('products.show')<a href="{{ route('products.show', $product) }}">{{ $product->name }}</a>@else{{ $product->name }}@endcan</td>
+                        <td>{{ $product->category->name ?? '—' }}</td>
+                        <td class="text-right">{{ money($product->sell_price) }}</td>
+                        <td class="text-right">
+                            <span class="{{ $product->stock <= $product->min_stock ? 'text-warning font-weight-bold' : '' }}" title="Mínimo: {{ $product->min_stock }}">{{ $product->stock }}</span>
                         </td>
-                        <td>{{$product->stock}}</td>
-                        
-                        <td>{{$product->status}}</td>
-                        
-                        <td>{{$product->category->name}}</td>
-                        <td style="width:50px;">
-
-                            {!!Form::open(['route'=>['products.destroy', $product],'method'=>'DELETE']) !!}
-                            <a href="{{route('products.edit',$product)}}" class="btn btn-default btn-xs">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                            {!! Form::close() !!}
+                        <td>@include('partials.status', ['status' => $product->status])</td>
+                        <td class="text-right">
+                            @can('change.status.products')
+                                <form action="{{ route('change.status.products', $product) }}" method="POST" class="d-inline">
+                                    @csrf @method('PATCH')
+                                    <button class="btn btn-link btn-sm btn-icon {{ $product->isActive() ? 'btn-warning' : 'btn-success' }}" title="{{ $product->isActive() ? 'Desactivar' : 'Activar' }}">
+                                        <i class="tim-icons {{ $product->isActive() ? 'icon-button-pause' : 'icon-button-power' }}"></i>
+                                    </button>
+                                </form>
+                            @endcan
+                            @can('products.edit')
+                                <a href="{{ route('products.edit', $product) }}" class="btn btn-link btn-info btn-sm btn-icon" title="Editar"><i class="tim-icons icon-pencil"></i></a>
+                            @endcan
+                            @can('products.destroy')
+                                @include('partials.delete', ['action' => route('products.destroy', $product)])
+                            @endcan
                         </td>
                     </tr>
-                    @endforeach
+                @empty
+                    <tr><td colspan="7" class="text-center text-muted">No hay productos.</td></tr>
+                @endforelse
                 </tbody>
             </table>
-            <div class="dataTables_info" id="dataTableBuilder_info" role="status" aria-live="polite"></div>
-            <div class="dataTables_paginate paging_simple_numbers" id="dataTableBuilder_paginate">
-                <ul class="pagination">
-                    <li class="paginate_button page-item previous disabled" id="dataTableBuilder_previous"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                    <li class="paginate_button page-item active"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                    <li class="paginate_button page-item next disabled" id="dataTableBuilder_next"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
-                </ul>
-            </div>
         </div>
-        <div class="card-footer clearfix">
-            <div class="float-right">
-            </div>
-        </div>
+        {{ $products->links() }}
     </div>
 </div>
-</div>
-
 @endsection
