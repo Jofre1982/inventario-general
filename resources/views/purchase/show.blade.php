@@ -1,99 +1,54 @@
-@extends('layouts.app', ['page' => __('Compras'), 'pageSlug' => 'ShowPurchases'])
+@extends('layouts.app', ['page' => 'Compras', 'pageSlug' => 'purchases'])
 
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Detalles Compras</h1>
-            </div>
+@include('partials.page-header', ['title' => 'Compra #' . $purchase->id])
+<div class="card">
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-3"><span class="text-muted">Fecha</span><br>{{ $purchase->purchase_date->format('d/m/Y h:i a') }}</div>
+            <div class="col-md-3"><span class="text-muted">Proveedor</span><br>{{ $purchase->provider->name ?? '—' }}<br><small>NIT {{ $purchase->provider->nit ?? '' }}</small></div>
+            <div class="col-md-3"><span class="text-muted">Registró</span><br>{{ $purchase->user->name ?? '—' }}</div>
+            <div class="col-md-3"><span class="text-muted">Estado</span><br>@include('partials.status', ['status' => $purchase->status])</div>
         </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead><tr><th>Producto</th><th class="text-right">Cantidad</th><th class="text-right">Costo unitario</th><th class="text-right">Subtotal</th></tr></thead>
+                <tbody>
+                @foreach ($purchase->purchaseDetails as $detail)
+                    <tr>
+                        <td>{{ $detail->product->name ?? 'Producto eliminado' }}</td>
+                        <td class="text-right">{{ $detail->quantity }}</td>
+                        <td class="text-right">{{ money($detail->price) }}</td>
+                        <td class="text-right">{{ money($detail->quantity * $detail->price) }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+                <tfoot>
+                    <tr><th colspan="3" class="text-right">Subtotal</th><th class="text-right">{{ money($purchase->subtotal) }}</th></tr>
+                    <tr><th colspan="3" class="text-right">Impuesto ({{ rtrim(rtrim(number_format($purchase->tax, 2, ',', '.'), '0'), ',') }} %)</th><th class="text-right">{{ money($purchase->tax_amount) }}</th></tr>
+                    <tr><th colspan="3" class="text-right">TOTAL</th><th class="text-right"><h4 class="mb-0">{{ money($purchase->total) }}</h4></th></tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <hr>
+        <h4>Factura del proveedor</h4>
+        @if ($purchase->picture)
+            <p><a href="{{ asset('image/purchases/' . $purchase->picture) }}" target="_blank" class="btn btn-sm btn-info"><i class="tim-icons icon-attach-87"></i> Ver comprobante adjunto</a></p>
+        @else
+            <p class="text-muted">No se ha adjuntado la factura.</p>
+        @endif
+        @can('upload.purchases')
+            <form action="{{ route('upload.purchases', $purchase) }}" method="POST" enctype="multipart/form-data" class="form-inline">
+                @csrf
+                <input type="file" name="picture" accept="image/*,application/pdf" required class="mr-2">
+                <button class="btn btn-sm btn-default">{{ $purchase->picture ? 'Reemplazar' : 'Adjuntar' }}</button>
+            </form>
+        @endcan
     </div>
-</section>
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-8 pl-lg-5">
-                        <div class="d-flex justify-content-between">
-                        </div>
-                        <!-- Desde aqui va la tabla-->
-                        <div class="form-group row">
-                            <div class="col-md-6 text center">
-                                <label class="form-control-label" for="nombre">Proveedor</label>
-                                <p>{{$purchase->provider->name}}</p>
-                            </div>
-
-                            <div class="col-md-6 text center">
-                                <label class="form-control-label" for="nombre">Numero de Compra</label>
-                                <p>{{$purchase->id}}</p>
-                            </div>
-                        </div>
-                        <br /><br />
-                        <div class="form-group">
-                            <h4 class="card-title ml-3">Detalle de la Compra</h4>
-                            <div class="table-responsive col-md-12">
-                                <table id="detalles" class="table table-striped">
-                                    <thead>
-                                        <th>Producto</th>
-                                        <th>Precio (PEN)</th>
-                                        <th>Cantidad</th>
-                                        <th>Subtotal (PEN)</th>
-                                    </thead>
-                                    <tfoot>
-                                    <tr>
-                                            <th colspan="3">
-                                                <p style="text-align:right">SUBTOTAL:</p>
-                                            </th>
-                                            <th>
-                                                <p style="text-align:right">s/{{number_format($subtotal,2)}}
-                                                </p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th colspan="3">
-                                                <p style="text-align:right">TOTAL IMPUESTO ({{$purchase->tax}}):</p>
-                                            </th>
-                                            <th>
-                                                <p style="text-align:right">s/{{number_format($subtotal*$purchase->tax/100,2)}}
-                                                </p>
-                                            </th>
-                                        </tr>
-                                        <tr>
-                                            <th colspan="3">
-                                                <p style="text-align:right">TOTAL:</p>
-                                            </th>
-                                            <th>
-                                                <p style="text-align:right">s/{{number_format($purchase->total,2)}}
-                                                </p>
-                                            </th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach($purchaseDetails as $purchaseDetail)
-                                        <tr>
-                                            <td>{{$purchaseDetail->product->name}}</td>
-                                            <td>s/{{$purchaseDetail->price}}</td>
-                                            <td>{{$purchaseDetail->quantity}}</td>
-                                            <td>s/{{number_format($purchaseDetail->quantity*$purchaseDetail->price,2)}}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <a href="{{ route('purchases.index') }}" class="btn btn-primary float-right">
-                                REGRESAR
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="card-footer d-flex flex-wrap justify-content-between">
+        <div>@include('purchase._actions')</div>
+        <div><a href="{{ route('purchases.index') }}" class="btn btn-default btn-sm">Regresar</a></div>
     </div>
 </div>
-
 @endsection

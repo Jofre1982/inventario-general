@@ -1,75 +1,41 @@
-@extends('layouts.app', ['page' => __('Usuarios'), 'pageSlug' => 'users'])
+@extends('layouts.app', ['page' => 'Usuarios', 'pageSlug' => 'users'])
 
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Usuarios del sistema</h1>
-            </div>
-            <div class="col-sm-6">
-                <a class="btn btn-primary float-right" href="{{ route('categories.create') }}">
-                    Nuevo
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<div class="content px-3">
-    <div class="clearfix"></div>
-    <div class="card">
-        <div class="card-body p-0">
-            <div id="dataTableBuilder_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle buttons-export btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button" aria-haspopup="true" aria-expanded="false"><span><i class="fa fa-download"></i> Exportar&nbsp;<span class="caret"></span></span></button></div> <button class="btn btn-secondary buttons-print btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-print"></i> Imprimir</span></button> <button class="btn btn-secondary buttons-reset btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-undo"></i> Reset</span></button> <button class="btn btn-secondary buttons-reload btn-default btn-sm no-corner" tabindex="0" aria-controls="dataTableBuilder" type="button"><span><i class="fa fa-refresh"></i> Actualizar</span></button>
-            </div>
-            <div id="dataTableBuilder_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTableBuilder"></label></div>
-            <div id="dataTableBuilder_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
-            <table class="table table-striped table-bordered dataTable no-footer" id="dataTableBuilder" width="100%" role="grid" aria-describedby="dataTableBuilder_info" style="width: 100%;">
-                <thead>
-                    <tr role="row">
-                        <th title="Id" class="sorting" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-label="Cantidad: activate to sort column ascending" style="width: 83px;">ID</th>
-                        <th title="Nombre" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Nombre: activate to sort column ascending" style="width: 316px;">NOMBRE</th>
-                        <th title="Descripcion" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">DESCRIPCION</th>
-                        <th title="Acciones" class="sorting_desc" tabindex="0" aria-controls="dataTableBuilder" rowspan="1" colspan="1" aria-sort="descending" aria-label="Descripcion: activate to sort column ascending" style="width: 316px;">ACCIONES</th>
-                       
-                    </tr>
-                </thead>
+@include('partials.page-header', ['title' => 'Usuarios', 'action' => route('users.create'), 'can' => 'users.create'])
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead><tr><th>Nombre</th><th>Correo</th><th>Roles</th><th>Creado</th><th class="text-right">Acciones</th></tr></thead>
                 <tbody>
-                    @foreach($categories as $category)
+                @foreach ($users as $user)
                     <tr>
-                        <th scope="row">{{$category->id}}</th>
+                        <td>@can('users.show')<a href="{{ route('users.show', $user) }}">{{ $user->name }}</a>@else{{ $user->name }}@endcan</td>
+                        <td>{{ $user->email }}</td>
                         <td>
-                            <a href="">{{$category->name}}</a>
+                            @forelse ($user->roles as $role)
+                                <span class="badge badge-info">{{ $role->name }}</span>
+                            @empty
+                                <span class="text-warning">Sin rol (no puede usar el sistema)</span>
+                            @endforelse
                         </td>
-                        <td>{{$category->descriptions}}</td>
-                        <td style="width:50px;">
-
-                            {!!Form::open(['route'=>['categories.destroy', $category],'method'=>'DELETE']) !!}
-                            <a href="{{route('categories.edit',$category)}}" class="btn btn-default btn-xs">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i></button>
-                            {!! Form::close() !!}
+                        <td>{{ optional($user->created_at)->format('d/m/Y') }}</td>
+                        <td class="text-right">
+                            @can('users.edit')
+                                <a href="{{ route('users.edit', $user) }}" class="btn btn-link btn-info btn-sm btn-icon" title="Editar"><i class="tim-icons icon-pencil"></i></a>
+                            @endcan
+                            @can('users.destroy')
+                                @if ($user->id !== auth()->id())
+                                    @include('partials.delete', ['action' => route('users.destroy', $user)])
+                                @endif
+                            @endcan
                         </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
             </table>
-            <div class="dataTables_info" id="dataTableBuilder_info" role="status" aria-live="polite"></div>
-            <div class="dataTables_paginate paging_simple_numbers" id="dataTableBuilder_paginate">
-                <ul class="pagination">
-                    <li class="paginate_button page-item previous disabled" id="dataTableBuilder_previous"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                    <li class="paginate_button page-item active"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                    <li class="paginate_button page-item next disabled" id="dataTableBuilder_next"><a href="#" aria-controls="dataTableBuilder" data-dt-idx="2" tabindex="0" class="page-link">Next</a></li>
-                </ul>
-            </div>
         </div>
-        <div class="card-footer clearfix">
-            <div class="float-right">
-            </div>
-        </div>
+        {{ $users->links() }}
     </div>
 </div>
-</div>
-
 @endsection

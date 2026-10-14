@@ -3,28 +3,29 @@
 namespace App\Http\Requests\Business;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'nit' => ['nullable', 'string', 'max:30'],
+            'description' => ['nullable', 'string', 'max:255'],
+            'mail' => ['nullable', 'email', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'picture' => ['nullable', 'image', 'max:2048'],
         ];
+    }
+
+    public function attributes()
+    {
+        return ['name' => 'nombre', 'description' => 'descripción', 'mail' => 'correo', 'address' => 'dirección', 'picture' => 'logo'];
     }
 }

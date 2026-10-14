@@ -7,20 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseDetails extends Model
 {
+    use HasFactory;
+
+    protected $table = 'purchase_details';
 
     protected $fillable = [
         'purchase_id',
         'product_id',
         'quantity',
         'price',
-
     ];
-    public function purchase(){
+
+    protected $casts = [
+        'quantity' => 'integer',
+        'price' => 'float',
+    ];
+
+    public function purchase()
+    {
         return $this->belongsTo(Purchase::class);
     }
 
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(Product::class);
-
     }
 }

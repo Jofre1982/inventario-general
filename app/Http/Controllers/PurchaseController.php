@@ -2,97 +2,96 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Purchase\StoreRequest;
+use App\Models\Business;
 use App\Models\Provider;
 use App\Models\Purchase;
-use App\Models\Product;
-use App\Http\Requests\Purchase\StoreRequest;
-use App\Http\Requests\Purchase\UpdateRequest;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Services\InventoryService;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    public function index()
+    public function __construct(private InventoryService $inventory)
     {
-        $purchases = Purchase::get();
+        $this->protectWithPermissions('purchases', [
+            'purchases.pdf' => 'pdf',
+            'upload.purchases' => 'upload',
+            'change.status.purchases' => 'change_status',
+        ]);
+    }
+
+    public function index(Request $request)
+    {
+        $purchases = Purchase::with(['provider', 'user'])
+            ->when($request->q, fn ($q, $term) => $q->where(fn ($w) => $w
+                ->where('id', $term)
+                ->orWhereHas('provider', fn ($p) => $p->where('name', 'like', "%{$term}%"))))
+            ->latest('purchase_date')
+            ->latest('id')
+            ->paginate(25)
+            ->withQueryString();
+
         return view('purchase.index', compact('purchases'));
     }
 
     public function create()
     {
-        $providers = Provider::get();
-        $products = Product::get();
-        return view('purchase.create', compact('providers', 'products'));
-    }
+        $providers = Provider::orderBy('name')->get();
 
+        return view('purchase.create', compact('providers'));
+    }
 
     public function store(StoreRequest $request)
     {
-        $purchase = Purchase::create($request->all() + [
-            'user_id' => Auth::user()->id,
-            'purchase_date' => Carbon::now('America/Bogota'),
-        ]);
-        foreach ($request->product_id as $key => $product) {
-            $results[] = ["product_id" => $request->product_id[$key],"quantity" => $request->quantity[$key],"price" => $request->price[$key],];                     
-        }
-        $purchase->purchaseDetails()->createMany($results);
-        return redirect()->route('purchases.index');
+        $purchase = $this->inventory->registerPurchase(
+            (int) $request->provider_id,
+            $request->user()->id,
+            (float) ($request->tax ?? 0),
+            $request->items()
+        );
+
+        return redirect()->route('purchases.show', $purchase)->with('success', "Compra #{$purchase->id} registrada; el stock fue actualizado.");
     }
 
     public function show(Purchase $purchase)
     {
-        $subtotal = 0;
-        $purchaseDetails = $purchase->purchaseDetails;
-        foreach ($purchaseDetails as  $purchaseDetail) {
-            $subtotal += $purchaseDetail->quantity*$purchaseDetail->price;
-        }
-        return view('purchase.show', compact('purchase', 'purchaseDetails', 'subtotal'));
-    }
+        $purchase->load(['provider', 'user', 'purchaseDetails.product']);
 
-    public function edit(Purchase $purchase)
-    {
-        $providers = Provider::get();
-        return view('purchase.edit', compact('purchase'));
-    }
-
-
-    public function update(UpdateRequest $request, Purchase $purchase)
-    {
-        $purchase->update($request->all());
-        return redirect()->route('purchases.index');
-    }
-
-
-    public function destroy(Purchase $purchase)
-    {
-        $purchase->delete();
-        return redirect()->route('purchases.index');
+        return view('purchase.show', compact('purchase'));
     }
 
     public function pdf(Purchase $purchase)
     {
-        $subtotal = 0;
-        $purchaseDetails = $purchase->purchaseDetails;
-        foreach ($purchaseDetails as  $purchaseDetail) {
-            $subtotal += $purchaseDetail->quantity*$purchaseDetail->price;
-        }
-        $pdf = PDF::loadView('purchase.pdf', compact('purchase','subtotal','purchaseDetails'));
-        return $pdf->download('Reporte_de_compras_'.$purchase->id.'.pdf');
+        $purchase->load(['provider', 'user', 'purchaseDetails.product']);
+        $business = Business::current();
+
+        return Pdf::loadView('purchase.pdf', compact('purchase', 'business'))
+            ->download('Compra_' . $purchase->id . '.pdf');
     }
-    public function upload(UpdateRequest $request, Purchase $purchase)
+
+    /** Adjunta la foto o PDF de la factura del proveedor. */
+    public function upload(Request $request, Purchase $purchase)
     {
-        $purchase->update($request->all());
-        return redirect()->route('purchases.index');
+        $request->validate([
+            'picture' => ['required', 'file', 'mimes:jpg,jpeg,png,webp,pdf', 'max:5120'],
+        ], [], ['picture' => 'comprobante']);
+
+        $file = $request->file('picture');
+        $name = 'compra_' . $purchase->id . '_' . time() . '.' . $file->extension();
+        $file->move(public_path('image/purchases'), $name);
+
+        $purchase->update(['picture' => $name]);
+
+        return back()->with('success', 'Comprobante adjuntado.');
     }
+
     public function change_status(Purchase $purchase)
     {
-        if ($purchase->status == 'VALID') {
-            $purchase->update(['status'=>'CANCELED']);
-            return redirect()->back();
-        } else {
-            $purchase->update(['status'=>'VALID']);
-            return redirect()->back();
-        }
+        $purchase = $this->inventory->togglePurchase($purchase);
+
+        return back()->with('success', $purchase->isValid()
+            ? "Compra #{$purchase->id} reactivada; se sumó el stock."
+            : "Compra #{$purchase->id} anulada; se descontó el stock.");
     }
 }
