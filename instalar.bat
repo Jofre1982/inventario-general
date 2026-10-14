@@ -71,10 +71,10 @@ if errorlevel 1 (
 echo.
 
 echo [4/6] Configurando...
-if not exist ".env" (
-    copy ".env.example" ".env" >nul
-    "%PHP%" artisan key:generate --force
-)
+if not exist ".env" copy ".env.example" ".env" >nul
+findstr /r /c:"^APP_KEY=base64:" ".env" >nul
+if errorlevel 1 "%PHP%" artisan key:generate --force
+"%PHP%" artisan config:clear >nul
 echo.
 
 echo [5/6] Creando las tablas...
@@ -86,6 +86,7 @@ if errorlevel 1 (
 echo.
 
 echo [6/6] Datos de ejemplo
+echo (Si ya los cargo antes, responda N para no duplicarlos)
 choice /c SN /m "Desea cargar productos y ventas de ejemplo para probar"
 if errorlevel 2 goto listo
 "%PHP%" artisan db:seed --class=DemoSeeder --force
