@@ -31,7 +31,7 @@ if errorlevel 1 (
     echo Cierre el XAMPP Control Panel y ejecute este archivo con clic derecho - Ejecutar como administrador.
     goto fin
 )
-"%PHP%" -m 2>nul | findstr /i /x "intl" >nul
+"%PHP%" -r "exit(extension_loaded('intl') ? 0 : 1);" 2>nul
 if errorlevel 1 (
     echo.
     echo [ERROR] La extension intl no carga. Este es el motivo que da PHP:
