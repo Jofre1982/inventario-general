@@ -19,11 +19,27 @@ Sistema de inventario, compras y ventas para negocios desde una tienda de barrio
 - Composer
 - MySQL / MariaDB (por ejemplo con XAMPP o Laragon)
 
-## Instalación fácil en Windows (con XAMPP)
+## Instalación en Windows (para usted o para un cliente)
 
-1. Instale XAMPP en `C:\xampp` y encienda **MySQL** en el XAMPP Control Panel.
-2. Haga doble clic en **`instalar.bat`** (solo la primera vez).
-3. Para usar el sistema cada día: encienda MySQL y haga doble clic en **`iniciar.bat`**.
+Funciona sin internet una vez instalado. Solo necesita **XAMPP** en `C:\xampp`.
+
+1. Doble clic en **`instalar.bat`** (pide permiso de administrador solo). Activa las extensiones de PHP, enciende MySQL, crea la base de datos, instala las librerías si faltan, pregunta los datos del negocio y la contraseña del administrador, y crea el ícono **Inventario General** en el escritorio.
+2. Para usarlo cada día: doble clic en el ícono del escritorio. Enciende MySQL y el sistema sin ventanas negras y lo abre como una ventana de programa (Edge o Chrome en modo aplicación).
+3. Cada día que se abre, guarda una copia de la base de datos en `respaldos\` (se conservan 30).
+
+### Llevarlo a un cliente
+
+En su computador, con el sistema ya instalado, ejecute **`preparar-paquete.bat`**: deja en el escritorio `InventarioGeneral-cliente.zip` con las librerías incluidas y **sin** sus datos, su `.env`, sus imágenes ni sus respaldos. En el cliente: instalar XAMPP, descomprimir el .zip en `C:\` y ejecutar `C:\InventarioGeneral\instalar.bat`. Las instrucciones para el cliente están en `LEEME-INSTALACION.txt`.
+
+| Archivo | Para qué |
+|---|---|
+| `instalar.bat` | Instalación completa (se puede repetir sin perder datos) |
+| `Inventario.vbs` | Lo que abre el ícono del escritorio |
+| `windows\arrancar.bat` | Enciende MySQL y el servidor ocultos, hace el respaldo del día |
+| `windows\detener.bat` | Apaga todo (opcional) |
+| `preparar-paquete.bat` | Arma el .zip para un cliente |
+
+La instalación queda en modo producción (`APP_DEBUG=false`): los errores no se muestran en pantalla y quedan en `storage\logs\laravel.log`. Para ver los errores mientras programa, cambie `APP_DEBUG=true` en `.env`.
 
 ## Instalación manual
 

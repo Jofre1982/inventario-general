@@ -1,0 +1,44 @@
+==================================================================
+ INVENTARIO GENERAL - INSTALACION EN EL COMPUTADOR DEL CLIENTE
+==================================================================
+
+Solo se hace UNA vez. Se necesita Windows 10 u 11.
+
+1) INSTALAR XAMPP
+   - Descargar XAMPP para Windows de https://www.apachefriends.org
+     (version con PHP 8.1 o superior).
+   - Instalarlo en la carpeta C:\xampp (es la que propone por defecto).
+   - No hace falta abrirlo ni configurarlo.
+
+2) COPIAR EL PROGRAMA
+   - Descomprimir InventarioGeneral-cliente.zip en C:\
+   - Debe quedar la carpeta C:\InventarioGeneral
+
+3) INSTALAR
+   - Doble clic en C:\InventarioGeneral\instalar.bat
+   - Windows pide permiso de administrador: responder SI.
+   - Si aparece "Windows protegio su PC": Mas informacion -> Ejecutar de todas formas.
+   - Responder las preguntas:
+       * Datos de ejemplo: N
+       * Nombre del negocio, NIT, direccion
+       * Correo y contrasena del administrador
+
+Al terminar queda en el escritorio el icono "Inventario General".
+
+------------------------------------------------------------------
+ USO DIARIO
+------------------------------------------------------------------
+ - Doble clic en el icono "Inventario General" del escritorio.
+   Tarda unos segundos la primera vez del dia y se abre solo.
+ - No hace falta abrir XAMPP ni tener internet.
+ - Cada dia se guarda sola una copia de seguridad en
+   C:\InventarioGeneral\respaldos (se conservan los ultimos 30 dias).
+   Recomendado: copiar esa carpeta a una USB o a la nube cada semana.
+
+------------------------------------------------------------------
+ SI ALGO FALLA
+------------------------------------------------------------------
+ - El icono muestra un mensaje explicando el problema.
+ - Reiniciar el computador soluciona la mayoria de los casos.
+ - Para apagar todo manualmente: C:\InventarioGeneral\windows\detener.bat
+ - Registro de errores: C:\InventarioGeneral\storage\logs\laravel.log

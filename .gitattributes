@@ -10,3 +10,5 @@
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
 *.bat text eol=crlf
+*.vbs text eol=crlf
+LEEME-INSTALACION.txt text eol=crlf

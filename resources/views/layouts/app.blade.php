@@ -12,8 +12,8 @@
         <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('black') }}/img/apple-icon.png">
         <link rel="icon" type="image/png" href="{{ asset('black') }}/img/favicon.png">
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <link href="{{ asset('vendor/poppins/poppins.css') }}" rel="stylesheet" />
+        <link href="{{ asset('vendor/fontawesome/css/all.min.css') }}" rel="stylesheet">
         <!-- Icons -->
         <link href="{{ asset('black') }}/css/nucleo-icons.css" rel="stylesheet" />
         <!-- CSS -->
@@ -82,7 +82,6 @@
         <script src="{{ asset('black') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
         <!--  Google Maps Plugin    -->
         <!-- Place this tag in your head or just before your close body tag. -->
-        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
         <!-- Chart JS -->
         {{-- <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script> --}}
         <!--  Notifications Plugin    -->
@@ -90,7 +89,7 @@
 
         <script src="{{ asset('black') }}/js/black-dashboard.min.js?v=1.0.0"></script>
         <script src="{{ asset('black') }}/js/theme.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
         <script src="{{ asset('js/inventario.js') }}"></script>
 
         <script>
